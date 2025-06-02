@@ -9,10 +9,10 @@
 #include "DtHorario.h"
 #include <iostream>
 using namespace std;
-class ControladorAltaFuncion: public IControladorAltaFuncion {
+class ControladorAltaFuncion {
 public:
     ControladorAltaFuncion();
-    void AltaFuncion(Cine idcine,DtFecha fecha,DtHorario horario);
+    void AltaFuncion(int idCine, int idSala, int idFuncion, DtFecha fecha, DtHorario horario);
     void obtenerFunciones();
 };
 #endif

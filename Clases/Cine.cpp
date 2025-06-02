@@ -20,6 +20,26 @@ void Cine::setDireccion(DtDireccion direccion) {
     this->direccion = direccion;
 }
 
+
+void Cine::agregarSala(Sala* sala) {
+    salas[sala->getId()] = sala;
+}
+
+list<Sala*> Cine::getSalas() {
+    list<Sala*> lista;
+    for (auto& par : salas) {
+        lista.push_back(par.second);
+    }
+    return lista;
+}
+
+Sala* Cine::buscarSala(int idSala) {
+    auto it = salas.find(idSala);
+    if (it != salas.end())
+        return it->second;
+    return nullptr;
+}
+
 Cine::~Cine() {
-    // Destructor
+    // Liberar memoria de salas si corresponde
 }
