@@ -1,42 +1,45 @@
-#include "Socio.h"
+#include "Cine.h"
+#include "ManejadorCine.h"
 #include <list>
-#include "ManejadorSocio.h"
 using namespace std;
 
-ManejadorSocio* ManejadorSocio::instancia = NULL;
+ManejadorCine* ManejadorCine::instancia = NULL;
 
-ManejadorSocio::ManejadorSocio(){}
+ManejadorCine::ManejadorCine(){}
 
-ManejadorSocio* ManejadorSocio::getInstancia(){
+ManejadorCine* ManejadorCine::getInstancia(){
     if (instancia == NULL)
-        instancia = new ManejadorSocio();
+        instancia = new ManejadorCine();
     return instancia;
 }
 
-list<Socio*> ManejadorSocio::getSocios(){
-    list<Socio*> lstSocios;
-    for (map<string,Socio*>::iterator it=this->socios.begin(); it!=socios.end(); ++it)
-        lstSocios.push_back(it->second);
-    return lstSocios;
+list<Cine*> ManejadorCine::getCines(){
+    list<Cine*> lstCines;
+    for (map<int,Cine*>::iterator it=this->cines.begin(); it!=cines.end(); ++it)
+        lstCines.push_back(it->second);
+    return lstCines;
 }
 
-Socio* ManejadorSocio::buscarSocio(string socio){
-  map<string,Socio*>::iterator it = this->socios.find(socio);
-  return it->second;
+Cine* ManejadorCine::buscarCine(int idCine){
+  map<int,Cine*>::iterator it = this->cines.find(idCine);
+  if(it != this->cines.end())
+      return it->second;
+  return NULL;
 }
 
-void ManejadorSocio::agregarSocio(Socio* socio){
-    socios.insert(std::pair<string,Socio*>(socio->getCi(),socio));
+void ManejadorCine::agregarCine(Cine* cine){
+    cines.insert(std::pair<int,Cine*>(cine->getIdCine(),cine));
 }
 
-bool ManejadorSocio::existeSocio(string socio){ 
-  map<string,Socio*>::iterator it = this->socios.find(socio);
-  return (it != this->socios.end());
+bool ManejadorCine::existeCine(int idCine){ 
+  map<int,Cine*>::iterator it = this->cines.find(idCine);
+  return (it != this->cines.end());
 }
 
-void ManejadorSocio::eliminarSocio(string socio){
-  map<string,Socio*>::iterator it = this->socios.find(socio);
-  this->socios.erase(it);
+void ManejadorCine::eliminarCine(int idCine){
+  map<int,Cine*>::iterator it = this->cines.find(idCine);
+  if(it != this->cines.end())
+      this->cines.erase(it);
 }
 
-ManejadorSocio::~ManejadorSocio(){}
+ManejadorCine::~ManejadorCine(){}

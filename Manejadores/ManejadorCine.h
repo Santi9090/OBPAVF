@@ -1,24 +1,25 @@
-#ifndef MANEJADORSOCIO
-#define MANEJADORSOCIO
-#include "Socio.h"
+#ifndef MANEJADORCINE_H
+#define MANEJADORCINE_H
+
+#include "Cine.h"
 #include <map>
 #include <list>
 #include <string>
-
 using namespace std;
 
-class ManejadorSocio{
-    private:
-        static ManejadorSocio* instancia;
-        map<string,Socio*> socios;
-        ManejadorSocio();
-    public:
-        static ManejadorSocio* getInstancia();
-        list<Socio*> getSocios();
-        Socio* buscarSocio(string);
-        void agregarSocio(Socio*);
-        bool existeSocio(string);
-        void eliminarSocio(string);
-        virtual ~ManejadorSocio();
+class ManejadorCine {
+private:
+    static ManejadorCine* instancia;
+    map<int, Cine*> cines;
+    ManejadorCine();
+public:
+    static ManejadorCine* getInstancia();
+    list<Cine*> getCines();
+    Cine* buscarCine(int idCine);
+    void agregarCine(Cine* cine);
+    bool existeCine(int idCine);
+    void eliminarCine(int idCine);
+    virtual ~ManejadorCine();
 };
+
 #endif
