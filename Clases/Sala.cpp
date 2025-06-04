@@ -1,22 +1,22 @@
 #include "Sala.h"
 #include <algorithm>
 
-Sala::Sala(int idSala, string direccion) : idSala(idSala), direccion(direccion) {}
+Sala::Sala(int idSala, int capacidad) : idSala(idSala), capacidad(capacidad) {}
 
 int Sala::getId() {
     return idSala;
 }
 
-string Sala::getDireccion() {
-    return direccion;
+int Sala::getCapacidad() {
+    return capacidad;
 }
 
 void Sala::setId(int idSala) {
     this->idSala = idSala;
 }
 
-void Sala::setDireccion(string direccion) {
-    this->direccion = direccion;
+void Sala::setCapacidad(int capacidad) {
+    this->capacidad = capacidad;
 }
 
 void Sala::agregarFuncion(Funcion* funcion) {
@@ -38,3 +38,6 @@ void Sala::removePeliFuncion(string titulo) {
 Sala::~Sala() {
     // Liberar memoria de funciones si corresponde
 }
+
+
+    

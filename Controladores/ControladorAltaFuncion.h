@@ -8,8 +8,9 @@
 #include "DtFecha.h"
 #include "DtHorario.h"
 #include <iostream>
+#include "IControladorAltaFuncion.h"
 using namespace std;
-class ControladorAltaFuncion {
+class ControladorAltaFuncion: public IControladorAltaFuncion {
 public:
     ControladorAltaFuncion();
     void AltaFuncion(int idCine, int idSala, int idFuncion, DtFecha fecha, DtHorario horario);

@@ -10,14 +10,14 @@ using namespace std;
 class Sala {
 private:
     int idSala;
-    string direccion;
+    int capacidad;
     map<int, Funcion*> funciones;
 public:
-    Sala(int id, string direccion);
+    Sala(int id, int capacidad);
     int getId();
-    string getDireccion();
+    int getCapacidad();
     void setId(int id);
-    void setDireccion(string direccion);
+    void setCapacidad(int capacidad);
     void agregarFuncion(Funcion* funcion);
     list<Funcion*> getFunciones();
     void removePeliFuncion(string titulo);

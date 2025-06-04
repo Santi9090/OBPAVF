@@ -19,8 +19,10 @@ public:
     void setIdCine(int idCine);
     void setDireccion(DtDireccion direccion);
     void agregarSala(Sala* sala);
-    list<Sala*> getSalas();
     Sala* buscarSala(int idSala);
+    bool existeSala(int idSala);
+    void eliminarSala(int idSala);
+    map<int, Sala*> listarSalas();
     ~Cine();
 };
 

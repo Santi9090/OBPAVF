@@ -20,6 +20,8 @@ public:
     bool existeCine(int idCine);
     void eliminarCine(int idCine);
     virtual ~ManejadorCine();
+
+    
 };
 
 #endif
