@@ -11,16 +11,12 @@ class Sala {
 private:
     int idSala;
     int capacidad;
-    map<int, Funcion*> funciones;
 public:
     Sala(int id, int capacidad);
     int getId();
     int getCapacidad();
     void setId(int id);
     void setCapacidad(int capacidad);
-    void agregarFuncion(Funcion* funcion);
-    list<Funcion*> getFunciones();
-    void removePeliFuncion(string titulo);
     ~Sala();
 };
 

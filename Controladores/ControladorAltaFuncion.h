@@ -9,6 +9,7 @@
 #include "DtHorario.h"
 #include <iostream>
 #include "IControladorAltaFuncion.h"
+#include "ManejadorFuncion.h"
 using namespace std;
 class ControladorAltaFuncion: public IControladorAltaFuncion {
 public:

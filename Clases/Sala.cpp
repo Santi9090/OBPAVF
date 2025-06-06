@@ -19,21 +19,6 @@ void Sala::setCapacidad(int capacidad) {
     this->capacidad = capacidad;
 }
 
-void Sala::agregarFuncion(Funcion* funcion) {
-    funciones[funcion->getIdFuncion()] = funcion;
-}
-
-list<Funcion*> Sala::getFunciones() {
-    list<Funcion*> lista;
-    for (auto& par : funciones) {
-        lista.push_back(par.second);
-    }
-    return lista;
-}
-
-void Sala::removePeliFuncion(string titulo) {
-    // Implementación pendiente: eliminar función por título de película
-}
 
 Sala::~Sala() {
     // Liberar memoria de funciones si corresponde
