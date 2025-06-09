@@ -1,12 +1,16 @@
 #ifndef ICONTROLADORSESION_H
 #define ICONTROLADORSESION_H
-
+#include "ControladorSesion.h"
+#include "Controladores/ControladorSesion.h"
 #include <string>
 using namespace std;
 
-class IControladorSesion {
+class IControladorSesion
+{
 public:
-    virtual bool iniciarSesion(string nick, string pass) = 0;
+    virtual void iniciarSesion(string nickname, string pass) = 0;
+    virtual void registrarUsuario(string nickname, string pass, string urlFoto) = 0;
+    virtual void cerrarSesion() = 0;
 };
 
 #endif

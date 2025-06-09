@@ -1,7 +1,12 @@
 #include "Usuario.h"
 
 Usuario::Usuario(string nickname, string contrasena, string urlFoto)
-    : nickname(nickname), contrasena(contrasena), urlFoto(urlFoto) {}
+    : nickname(nickname), contrasena(contrasena), urlFoto(urlFoto)
+{
+    this->nickname = nickname;
+    this->contrasena = contrasena;
+    this->urlFoto = urlFoto;
+}
 string Usuario::getNickname()
 {
     return nickname;

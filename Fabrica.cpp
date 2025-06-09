@@ -19,7 +19,7 @@ Fabrica* Fabrica::getInstancia(){
 
 
 Fabrica::~Fabrica(){}
-
+/*
 IControladorCrearReserva* Fabrica::getIControladorCrearReserva() {
     return new ControladorCrearReserva();
 }
@@ -28,9 +28,6 @@ IControladorVerReservaPelicula* Fabrica::getIControladorVerReservaPelicula() {
     return new ControladorVerReservaPelicula();
 }
 
-IControladorSesion* Fabrica::getIControladorSesion() {
-    return new ControladorSesion();
-}
 
 IControladorPelicula* Fabrica::getIControladorPelicula() {
     return new ControladorPelicula();
@@ -42,4 +39,9 @@ IControladorAltaCine* Fabrica::getIControladorAltaCine() {
 
 IControladorAltaFuncion* Fabrica::getIControladorAltaFuncion() {
     return new ControladorAltaFuncion();
+}
+*/
+
+IControladorSesion* Fabrica::getIControladorSesion() {
+    return new ControladorSesion();
 }

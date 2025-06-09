@@ -3,9 +3,8 @@
 #include "DtFecha.h"
 #include "DtHorario.h"
 #include <iostream>
+#include "Pelicula.h"
 using namespace std;
-
-
 
 class Funcion
 {
@@ -13,6 +12,7 @@ private:
     int idFuncion;
     DtFecha fecha;
     DtHorario horario;
+    Pelicula* pelicula;
 public:
     Funcion(int idFuncion, DtFecha fecha, DtHorario horario);
     int getIdFuncion();

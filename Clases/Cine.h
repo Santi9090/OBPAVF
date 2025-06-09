@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <list>
+#include "Pelicula.h"
 using namespace std;
 
 class Cine {
@@ -12,6 +13,7 @@ private:
     int idCine;
     DtDireccion direccion;
     map<int, Sala*> salas;
+    map<int , Pelicula*> peliculas;
 public:
     Cine(int idCine, DtDireccion direccion);
     int getIdCine();
@@ -23,7 +25,6 @@ public:
     bool existeSala(int idSala);
     void eliminarSala(int idSala);
     map<int, Sala*> listarSalas();
-    ~Cine();
 };
 
 #endif

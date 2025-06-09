@@ -2,6 +2,9 @@
 #define PELICULA_H
 
 #include <string>
+#include <map>
+#include "Cine.h"
+#include "Funcion.h"
 using namespace std;
 class Pelicula {
 private:
@@ -9,7 +12,6 @@ private:
     string sinopsis;
     float puntajePromedio;
     string poster;
-
 public:
     Pelicula(string& titulo, string& sinopsis, float puntajePromedio, string& poster);
     string getTitulo();
@@ -25,6 +27,9 @@ public:
     void obtenerMasInfo();
     void getDtPelicula();
     void verInformacionAdicional(string& p);
+    
+
+
 };
 
 #endif 

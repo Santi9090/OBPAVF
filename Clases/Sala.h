@@ -5,12 +5,14 @@
 #include <map>
 #include <list>
 #include "Funcion.h"
+#
 using namespace std;
 
 class Sala {
 private:
     int idSala;
     int capacidad;
+    map <int, Funcion*> funciones;
 public:
     Sala(int id, int capacidad);
     int getId();
