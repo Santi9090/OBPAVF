@@ -7,11 +7,9 @@
 using namespace std;
 class ControladorSesion: public IControladorSesion {
 public:
-    ControladorSesion();
-    void iniciarSesion(string nickname, string pass);
-    void cerrarSesion();
-    void registarUsuario(string nickname, string pass,string urlFoto);
-    ~ControladorSesion();
-
+    
+    void iniciarSesion(string nickname, string pass) override;
+    void cerrarSesion() override;
+    void registrarUsuario(string nickname, string pass, string urlFoto) override;
 };
 #endif

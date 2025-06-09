@@ -39,7 +39,7 @@ void ControladorSesion::cerrarSesion()
 }
 
 
-void ControladorSesion::registarUsuario(string nickname, string pass, string urlFoto)
+void ControladorSesion::registrarUsuario(string nickname, string pass, string urlFoto)
 {
     ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
     Usuario *usuario;
