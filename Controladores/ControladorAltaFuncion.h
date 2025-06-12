@@ -2,14 +2,14 @@
 #define CONTROLADORALTAFUNCION_H
 
 #include <string>
-#include "Funcion.h"
-#include "Pelicula.h"
-#include "Cine.h"
-#include "DtFecha.h"
-#include "DtHorario.h"
+#include "../Clases/Funcion.h"
+#include "../Clases/Pelicula.h"
+#include "../Clases/Cine.h"
+#include "../DataTypes/DtFecha.h"
+#include "../DataTypes/DtHorario.h"
 #include <iostream>
-#include "IControladorAltaFuncion.h"
-#include "ManejadorFuncion.h"
+#include "../Interfaces/IControladorAltaFuncion.h"
+
 using namespace std;
 class ControladorAltaFuncion: public IControladorAltaFuncion {
 public:

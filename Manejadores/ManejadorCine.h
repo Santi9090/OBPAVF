@@ -1,7 +1,7 @@
 #ifndef MANEJADORCINE_H
 #define MANEJADORCINE_H
 
-#include "Cine.h"
+#include "../Clases/Cine.h"
 #include <map>
 #include <list>
 #include <string>

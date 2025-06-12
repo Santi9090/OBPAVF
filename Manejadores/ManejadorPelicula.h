@@ -21,7 +21,7 @@ public:
     Pelicula* buscarPelicula(string titulo);
     bool existePelicula(string titulo);
     void eliminarPelicula(string titulo);
-    map<string, Pelicula*> listarPeliculas();
+    list<Pelicula*> listarPeliculas();
 };
     
 #endif

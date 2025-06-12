@@ -1,11 +1,10 @@
 #ifndef CINE_H
 #define CINE_H
-#include "DtDireccion.h"
-#include "Sala.h"
+#include "../DataTypes/DtDireccion.h"
 #include <string>
 #include <map>
 #include <list>
-#include "Pelicula.h"
+#include "Sala.h"
 using namespace std;
 
 class Cine {

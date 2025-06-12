@@ -2,28 +2,30 @@
 #define CONTROLADORCREARRESERVA_CPP
 
 #include "ControladorCrearReserva.h"
-#include "ManejadorCine.h"
-#include "ManejadorPelicula.h"
-#include "Sala.h"
-#include "Funcion.h"
+#include "../Manejadores/ManejadorCine.h"
+#include "../Manejadores/ManejadorPelicula.h"
+#include "../Manejadores/ManejadorFuncion.h"
+
+#include "../Clases/Sala.h"
+#include "../Clases/Funcion.h"
 using namespace std;
 
-map<string, DtPelicula> ControladorCrearReserva::listarPeliculas() {
+list<Pelicula*> ControladorCrearReserva::listarPeliculas() {
     ManejadorPelicula* manejadorPelicula = ManejadorPelicula::getInstancia();
     return manejadorPelicula->listarPeliculas();
 }
 
-map<string, DtCine> ControladorCrearReserva::listarCines() {
+list<Cine*> ControladorCrearReserva::listarCines() {
     ManejadorCine* manejadorCine = ManejadorCine::getInstancia();
-    return manejadorCine->listarCines();
+    return manejadorCine->getCines();
 }
 
-map<string, DtFuncion> ControladorCrearReserva::listarFunciones() {
+list<Funcion*> ControladorCrearReserva::listarFunciones() {
     ManejadorFuncion* manejadorFuncion = ManejadorFuncion::getInstancia();
-    return manejadorFuncion->listarFunciones();
+    return manejadorFuncion->getFunciones();
 }
 
-void ControladorCrearReserva::CrearReserva(string nickname, DtFuncion dtF, string tit, DtCine dtC) {
+void ControladorCrearReserva::CrearReserva(string nickname, Funcion* dtF, string tit, Cine* dtC) {
     ManejadorReserva* manejadorReserva = ManejadorReserva::getInstancia();
     manejadorReserva->CrearReserva(nickname, dtF, tit, dtC);
 }

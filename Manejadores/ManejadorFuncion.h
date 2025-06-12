@@ -1,6 +1,6 @@
 #ifndef MANEJADOR_FUNCION_H
 #define MANEJADOR_FUNCION_H
-#include "Funcion.h"
+#include "../Clases/Funcion.h"
 #include <string>
 #include <map>
 using namespace std;

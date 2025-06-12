@@ -1,7 +1,6 @@
 #include "ControladorVerReservaPelicula.h"
-#include "ManejadorCine.h"
-#include "Sala.h"
-#include "Funcion.h"
+#include "../Manejadores/ManejadorCine.h"
+
 using namespace std;
 
 ControladorVerReservaPelicula::ControladorVerReservaPelicula() {}

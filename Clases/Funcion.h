@@ -1,10 +1,13 @@
 #ifndef FUNCION_H
 #define FUNCION_H
-#include "DtFecha.h"
-#include "DtHorario.h"
+#include "../DataTypes/DtFecha.h"
+#include "../DataTypes/DtHorario.h"
 #include <iostream>
-#include "Pelicula.h"
+
 using namespace std;
+
+// Forward declaration
+class Pelicula;
 
 class Funcion
 {

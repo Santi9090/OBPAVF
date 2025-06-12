@@ -1,8 +1,8 @@
 #ifndef CONTROLADORALTACINE_H
 #define CONTROLADORALTACINE_H
-#include "IControladorAltaCine.h"
+#include "../Interfaces/IControladorAltaCine.h"
 #include <string>
-#include "DtDireccion.h"
+#include "../DataTypes/DtDireccion.h"
 using namespace std;
 
 class ControladorAltaCine: public IControladorAltaCine {

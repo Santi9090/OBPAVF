@@ -1,8 +1,8 @@
 #include <iostream>
-#include "ControladorAltaFuncion.h"
-#include "ManejadorCine.h"
-#include "Sala.h"
-#include "Funcion.h"
+#include "../Controladores/ControladorAltaFuncion.h"
+#include "../Manejadores/ManejadorCine.h"
+#include "../Clases/Sala.h"
+#include "../Clases/Funcion.h"
 using namespace std;
 
 ControladorAltaFuncion::ControladorAltaFuncion() {}

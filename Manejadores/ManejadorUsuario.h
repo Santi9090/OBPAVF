@@ -3,8 +3,9 @@
 
 #include <string>
 #include <map>
-#include "Usuario.h"
-#include "Sesion.h"
+#include "../Clases/Usuario.h"
+#include "../Clases/Sesion.h"
+#include <list>
 using namespace std;
 class ManejadorUsuario {
 private:

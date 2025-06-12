@@ -2,13 +2,19 @@
 #define CONTROLADORPELICULA_H
 
 #include <string>
-#include "IControladorPelicula.h"
+#include "../Interfaces/IControladorPelicula.h"
+#include "../DataTypes/DtPelicula.h"
+#include <map>
+#include "../Clases/Pelicula.h"
 using namespace std;
 
-class ControladorPelicula: public IControladorPelicula {
+class ControladorPelicula : public IControladorPelicula
+{
 public:
-    ControladorPelicula();
-    void EliminarPelicula(string titulo);
+    void RegistrarPelicula(string titulo, string sinopsis, string urlFoto);
+    list<Pelicula*> ListarPeliculas();
+    bool ExistePelicula(string titulo);
+    DtPelicula BuscarPelicula(string titulo);
 };
 
 #endif

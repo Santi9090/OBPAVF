@@ -1,27 +1,34 @@
 #include "ManejadorPelicula.h"
-#include "Pelicula.h"
+#include "../Clases/Pelicula.h"
 #include <iostream>
 #include <map>
 using namespace std;
+
 ManejadorPelicula* ManejadorPelicula::instancia = NULL;
+
 ManejadorPelicula::ManejadorPelicula() {}
+
 ManejadorPelicula* ManejadorPelicula::getInstancia() {
     if (instancia == NULL)
         instancia = new ManejadorPelicula();
     return instancia;
 }
+
 void ManejadorPelicula::agregarPelicula(Pelicula* pelicula) {
     peliculas.insert(pair<string, Pelicula*>(pelicula->getTitulo(), pelicula));
 }
+
 Pelicula* ManejadorPelicula::buscarPelicula(string titulo) {
     map<string, Pelicula*>::iterator it = peliculas.find(titulo);
     if (it != peliculas.end())
         return it->second;
     return NULL;
 }
+
 bool ManejadorPelicula::existePelicula(string titulo) {
     return peliculas.find(titulo) != peliculas.end();
 }
+
 void ManejadorPelicula::eliminarPelicula(string titulo) {
     map<string, Pelicula*>::iterator it = peliculas.find(titulo);
     if (it != peliculas.end()) {
@@ -29,12 +36,19 @@ void ManejadorPelicula::eliminarPelicula(string titulo) {
         peliculas.erase(it);
     }
 }
-map<string, Pelicula*> ManejadorPelicula::listarPeliculas() {
-    return peliculas;
+
+list<Pelicula*> ManejadorPelicula::listarPeliculas() {
+    list<Pelicula*> lista;
+    for (map<string, Pelicula*>::iterator it = peliculas.begin(); it != peliculas.end(); ++it) {
+        lista.push_back(it->second);
+    }
+    return lista;
 }
+
 ManejadorPelicula::~ManejadorPelicula() {
-    for (auto& pair : peliculas) {
-        delete pair.second; // Liberar memoria de cada película
+    // Liberar memoria de todas las películas
+    for (map<string, Pelicula*>::iterator it = peliculas.begin(); it != peliculas.end(); ++it) {
+        delete it->second;
     }
     peliculas.clear();
 }

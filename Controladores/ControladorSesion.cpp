@@ -1,4 +1,7 @@
 #include "ControladorSesion.h"
+#include "../Manejadores/ManejadorUsuario.h"
+#include "../Clases/Usuario.h"
+#include "../Clases/Sesion.h"
 using namespace std;
 
 ControladorSesion::ControladorSesion()
@@ -7,51 +10,47 @@ ControladorSesion::ControladorSesion()
 
 void ControladorSesion::iniciarSesion(string nickname, string pass)
 {
-    ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
+    ManejadorUsuario* mU = ManejadorUsuario::getInstancia();
     if(mU->existeUsuario(nickname))
     {
-        Usuario *usuario = mU->buscarUsuario(nickname);
+        Usuario* usuario = mU->buscarUsuario(nickname);
         if (usuario->getContrasena() == pass)
         {
-            Sesion *sesion = Sesion::getInstancia();
+            Sesion* sesion = Sesion::getInstancia();
             sesion->setUsuario(usuario);
             printf("Inicio de sesión exitoso.\n");
         }
         else
-       {
-           printf("Contraseña incorrecta.\n");
-       }
-   }
-   else
-   {
-       printf("El usuario no existe.\n");
-   }
-}
-
-void ControladorSesion::cerrarSesion()
-{
-    Sesion *sesion = Sesion::getInstancia();
-    if (sesion->getUsuario() != nullptr)
+        {
+            printf("Contraseña incorrecta.\n");
+        }
+    }
+    else
     {
-        sesion->setUsuario(nullptr);
-        printf("Sesión cerrada exitosamente.\n");
+        printf("El usuario no existe.\n");
     }
 }
 
-
 void ControladorSesion::registrarUsuario(string nickname, string pass, string urlFoto)
 {
-    ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
-    Usuario *usuario;
-    if (!mU->existeUsuario(nickname))
+    ManejadorUsuario* mU = ManejadorUsuario::getInstancia();
+    if(!mU->existeUsuario(nickname))
     {
-        usuario = new Usuario(nickname, pass, urlFoto);
+        Usuario* usuario = new Usuario(nickname, pass, urlFoto);
         mU->agregarUsuario(usuario);
+        printf("Usuario registrado con éxito.\n");
     }
     else
     {
         printf("El usuario ya existe.\n");
     }
+}
+
+void ControladorSesion::cerrarSesion()
+{
+    Sesion* sesion = Sesion::getInstancia();
+    sesion->setUsuario(nullptr);
+    printf("Sesión cerrada.\n");
 }
 
 ControladorSesion::~ControladorSesion()

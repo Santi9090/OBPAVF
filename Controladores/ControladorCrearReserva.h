@@ -3,19 +3,19 @@
 
 #include <string>
 #include "../Interfaces/IControladorCrearReserva.h"
-#include "../DataTypes/DtPelicula.h"
-#include "../DataTypes/DtCine.h"
-#include "../DataTypes/DtFuncion.h"
+#include "../Clases/Pelicula.h"
+#include "../Clases/Cine.h"
+#include "../Clases/Funcion.h"
 #include <map>
 using namespace std;
 
 class ControladorCrearReserva : public IControladorCrearReserva
 {
 public:
-    map<string, DtPelicula> listarPeliculas();
-    map<string, DtCine> listarCines();
-    map<string, DtFuncion> listarFunciones();
-    void CrearReserva(string nickname, DtFuncion dtF, string tit, DtCine dtC);
+    list<Pelicula*> listarPeliculas();
+    list<Cine*> listarCines();
+    list<Funcion*> listarFunciones();
+    void CrearReserva(string nickname, Funcion* dtF, string tit, Cine* dtC);
 };
 
 #endif

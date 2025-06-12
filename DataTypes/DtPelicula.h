@@ -17,3 +17,5 @@ public:
     string getPoster() const;
     ~DtPelicula();
 };
+
+#endif

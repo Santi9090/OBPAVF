@@ -1,7 +1,5 @@
 #ifndef ICONTROLADORSESION_H
 #define ICONTROLADORSESION_H
-#include "ControladorSesion.h"
-#include "Controladores/ControladorSesion.h"
 #include <string>
 using namespace std;
 

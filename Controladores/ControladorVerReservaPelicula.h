@@ -2,7 +2,9 @@
 #define CONTROLADORVERRESERVAPELICULA_H
 
 #include <string>
-#include "IControladorVerReservaPelicula.h"
+#include "../Interfaces/IControladorVerReservaPelicula.h"
+#include "../Clases/Sala.h"
+#include "../Clases/Funcion.h"
 using namespace std;
 
 class ControladorVerReservaPelicula: public IControladorVerReservaPelicula {
