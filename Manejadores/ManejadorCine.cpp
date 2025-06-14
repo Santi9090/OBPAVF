@@ -1,5 +1,5 @@
-#include "Cine.h"
-#include "ManejadorCine.h"
+#include "../Clases/Cine.h"
+#include "../Manejadores/ManejadorCine.h"
 #include <list>
 using namespace std;
 

@@ -6,6 +6,7 @@
 #include "../Clases/Pelicula.h"
 #include "../Clases/Cine.h"
 #include "../Clases/Funcion.h"
+#include "../DataTypes/DtReserva.h"
 #include <map>
 using namespace std;
 
@@ -15,7 +16,7 @@ public:
     list<Pelicula*> listarPeliculas();
     list<Cine*> listarCines();
     list<Funcion*> listarFunciones();
-    void CrearReserva(string nickname, Funcion* dtF, string tit, Cine* dtC);
+    void CrearReserva(Funcion* funcion, DtReserva reserva);
 };
 
 #endif

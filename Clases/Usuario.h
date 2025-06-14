@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include "Reserva.h"
+#include <list>
 using namespace std;
 
 class Usuario
@@ -11,7 +12,7 @@ private:
     string nickname;
     string contrasena;
     string urlFoto;
-    map<string, Reserva*> reservas;
+    
 public:
     Usuario(string nickname, string contrasena, string urlFoto);
     string getNickname();
@@ -22,9 +23,6 @@ public:
     void setUrlFoto(string urlFoto);
 
 
-    void agregarReserva(Reserva* reserva);
-    Reserva* buscarReserva(string titulo);
-    bool existeReserva(string titulo);
 
     ~Usuario();
 };

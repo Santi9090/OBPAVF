@@ -1,5 +1,10 @@
 #include "Usuario.h"
+#include "Debito.h"
+#include "Credito.h"
+#include "../Manejadores/ManejadorUsuario.h"
+#include <list>
 
+using namespace std;
 Usuario::Usuario(string nickname, string contrasena, string urlFoto)
     : nickname(nickname), contrasena(contrasena), urlFoto(urlFoto)
 {
@@ -31,4 +36,6 @@ void Usuario::setUrlFoto(string urlFoto)
 {
     this->urlFoto = urlFoto;
 }
+
+
 Usuario::~Usuario() {}

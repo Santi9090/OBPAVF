@@ -60,5 +60,4 @@ map<int, Sala *> Cine::listarSalas()
 
 Cine::~Cine()
 {
-    // Liberar memoria de salas si corresponde
 }

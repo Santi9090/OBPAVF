@@ -9,6 +9,7 @@ private:
     int hora;
     int minuto;
 public:
+DtHorario();
     DtHorario(int hora, int minuto);
     int getHora() const;
     int getMinuto() const;

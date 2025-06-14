@@ -1,4 +1,8 @@
 #include "Funcion.h"
+#include "Reserva.h"
+#include "Debito.h"
+#include "Credito.h"
+
 
 Funcion::Funcion(int idFuncion, DtFecha fecha, DtHorario horario) {
     this->idFuncion = idFuncion;
@@ -29,5 +33,35 @@ void Funcion::setFecha(DtFecha fecha) {
 void Funcion::setHorario(DtHorario horario) {
     this->horario = horario;
 }
+
+void Funcion::agregarReserva(Reserva *reserva)
+{
+    try
+    {
+        Debito *preserva = dynamic_cast<Debito *>(reserva);
+        Debito *debito = new Debito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getBanco());
+        this->reservas.insert(std::pair<int, Reserva *>(debito->getCosto(), debito));
+    }
+    catch (bad_cast)
+    {
+        try{
+        Credito *preserva = dynamic_cast<Credito *>(reserva);
+        Credito *credito = new Credito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getDescuento(), preserva->getFinanciera());
+        this->reservas.insert(std::pair<int, Reserva *>(credito->getCosto(), credito));
+        }
+        catch (bad_cast){}
+    }
+   
+}
+
+
+
+ list<Reserva*> Funcion::listarReservas(){
+    list<Reserva*> lstReservas;
+    for (map<int, Reserva*>::iterator it=this->reservas.begin(); it!=this->reservas.end(); ++it)
+        lstReservas.push_back(it->second);
+    return lstReservas;
+ }
+
 
 Funcion::~Funcion() {}

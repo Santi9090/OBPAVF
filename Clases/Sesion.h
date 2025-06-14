@@ -1,6 +1,6 @@
 #ifndef SESION_H
 #define SESION_H
-
+#include "Usuario.h"
 class Sesion {
     private:
         static Sesion* instancia;

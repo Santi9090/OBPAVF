@@ -24,6 +24,7 @@ public:
     bool existeSala(int idSala);
     void eliminarSala(int idSala);
     map<int, Sala*> listarSalas();
+    ~Cine();
 };
 
 #endif
