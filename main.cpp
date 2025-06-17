@@ -9,12 +9,12 @@ void menu()
 {
     cout << "_____________________________________________" << endl;
     cout << "_____________SISTEMA DEL MOMO_____________" << endl;
-    cout << "9-CerrarSesion: " << endl;
-    cout << "0-CerrarSesion: " << endl;
+    cout << "1- iniciarSesion: " << endl;
+    cout << "2- RegistrarUsuario: " << endl;
     cout << "_____________________________________________" << endl;
 }
 
-void registrarUsuario()
+void AltaUsuario()
 {
     string nick, pass, urlFoto;
     cout << "_____________________________________________" << endl;
@@ -30,6 +30,7 @@ void registrarUsuario()
 }
 void iniciarSesion()
 {
+    int opcion2;
     string nick, pass;
     cout << "_____________________________________________" << endl;
     cout << "___________INICIAR SESION____________" << endl;
@@ -39,6 +40,27 @@ void iniciarSesion()
     cin >> pass;
     iconSesion->iniciarSesion(nick, pass);
     cout << "_____________________________________________" << endl;
+    while (iconSesion->existeUsuario(nick) and !iconSesion->existeSesion())
+    {
+        cout << "1-Reingresar Contraseña" << endl;
+        cout << "2-Cancelar Incio de sesion " << endl;
+        cin >> opcion2;
+        switch (opcion2)
+        {
+        case 1:
+            cout << "Ingrese su contraseña: ";
+            cin >> pass;
+            iconSesion->iniciarSesion(nick, pass);
+            break;
+
+        case 2:
+            iconSesion->cerrarSesion();
+            break;
+        default:
+            cout << "Opción no válida. Intente de nuevo." << endl;
+            break;
+        }
+    }
 }
 void registrarPelicula()
 {
@@ -71,7 +93,8 @@ void registrarPelicula()
     } while (continua != 0);
 }
 
-void registrarCine(){
+void altaCine()
+{
     string nombre, direccion;
     cout << "_____________________________________________" << endl;
     cout << "___________REGISTRAR CINE____________" << endl;
@@ -79,55 +102,69 @@ void registrarCine(){
     cin >> nombre;
     cout << "Ingrese la dirección del cine: ";
     cin >> direccion;
- 
-    cout << "Cine registrado exitosamente." << endl;
+}
+
+void menu2()
+{
+    cout << "_____________________________________________" << endl;
+    cout << "_____________MENU ___________________________" << endl;
+    cout << "1- Registrar Película" << endl;
+    cout << "2- Registrar Cine" << endl;
+    cout << "9- Registrar Usuario" << endl;
+    cout << "0- Cerrar Sesión" << endl;
     cout << "_____________________________________________" << endl;
 }
+
 int main()
 {
     fabrica = Fabrica::getInstancia();
     iconSesion = fabrica->getIControladorSesion();
     iconPelicula = fabrica->getIControladorPelicula();
+
     int opcion;
-    menu();
-    menu();
-    cout << "Seleccione una opción: ";
-    cin >> opcion;
     do
     {
+        menu();
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
         switch (opcion)
         {
         case 1:
             iniciarSesion();
             break;
         case 2:
-            registrarUsuario();
+            AltaUsuario();
             break;
 
         default:
             cout << "Opción no válida. Intente de nuevo." << endl;
             break;
         }
-    } while (opcion != 0);
-    cout << "Seleccione una opción: ";
-    cin >> opcion;
-    switch (opcion)
+    } while (!iconSesion->existeSesion());
+    do
     {
-    case 1:
-        registrarPelicula();
-        break;
-    case 2:
-        registrarCine();
-        break;
-    case 9:
-        registrarUsuario();
-        break;
-    case 0:
-        iconSesion->cerrarSesion();
-        break;
-    default:
-        cout << "Opción no válida. Intente de nuevo." << endl;
-        break;
-    }
+        menu2();
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+        switch (opcion)
+        {
+        case 1:
+            registrarPelicula();
+            break;
+        case 2:
+            altaCine();
+            break;
+        case 9:
+            AltaUsuario();
+            break;
+        case 0:
+            iconSesion->cerrarSesion();
+            break;
+        default:
+            cout << "Opción no válida. Intente de nuevo." << endl;
+            break;
+        }
+    } while (iconSesion->existeSesion());
+
     cout << "Gracias por usar el sistema del momo." << endl;
 }

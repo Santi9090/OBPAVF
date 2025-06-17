@@ -9,6 +9,8 @@ public:
     virtual void iniciarSesion(string nickname, string pass) = 0;
     virtual void registrarUsuario(string nickname, string pass, string urlFoto) = 0;
     virtual void cerrarSesion() = 0;
+    virtual bool existeUsuario(string nickname) = 0;
+    virtual bool existeSesion() = 0;
 };
 
 #endif
