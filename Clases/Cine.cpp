@@ -1,5 +1,6 @@
 #include "Cine.h"
 #include <string>
+#include <map>
 using namespace std;
 
 Cine::Cine(int idCine, DtDireccion direccion)
@@ -27,7 +28,7 @@ void Cine::setDireccion(DtDireccion direccion)
 
 void Cine::agregarSala(Sala *sala)
 {
-    salas[sala->getId()] = sala;
+    salas.insert(std::pair<int,Sala*>(sala->getId(),sala));
 }
 
 

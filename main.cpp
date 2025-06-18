@@ -5,6 +5,7 @@ using namespace std;
 Fabrica *fabrica;
 IControladorSesion *iconSesion;
 IControladorPelicula *iconPelicula;
+IControladorAltaCine *iconCine;
 void menu()
 {
     cout << "_____________________________________________" << endl;
@@ -95,15 +96,41 @@ void registrarPelicula()
 
 void altaCine()
 {
-    string nombre, direccion;
-    cout << "_____________________________________________" << endl;
-    cout << "___________REGISTRAR CINE____________" << endl;
-    cout << "Ingrese el nombre del cine: ";
-    cin >> nombre;
-    cout << "Ingrese la dirección del cine: ";
-    cin >> direccion;
+    int opcion, numero;
+    string calle;
+    do
+    {
+        cout << "_____________________________________________" << endl;
+        cout << "___________REGISTRAR CINE____________" << endl;
+        cout << "Ingrese la dirección del cine: ";
+        cin >> calle;
+        cout << "Ingrese el número de la dirección: ";
+        cin >> numero;
+        DtDireccion direccion(calle, numero);
+        cout << "_____________________________________________" << endl;
+        map<int, DtSala> dtSalas;
+        int idSala = 1;
+        int capacidad=0;
+        do
+        {
+            cout << "Ingrese la capacidad de la sala (0 para terminar): ";
+            cin >> capacidad;
+            if (capacidad > 0)
+            {
+                DtSala dtSala(idSala, capacidad);
+                dtSalas.insert(pair<int, DtSala>(idSala, dtSala));
+                idSala++;
+            }
+        } while (capacidad > 0 );
+        cout << "_____________________________________________" << endl;
+        cout << "Desea registrar el cine (1-Sí, 0-No): ";
+        cin >> opcion;
+        if (opcion == 1)
+        {
+            iconCine->AltaCine(direccion, dtSalas);
+        }
+    }while (opcion != 0);
 }
-
 void menu2()
 {
     cout << "_____________________________________________" << endl;
@@ -120,6 +147,7 @@ int main()
     fabrica = Fabrica::getInstancia();
     iconSesion = fabrica->getIControladorSesion();
     iconPelicula = fabrica->getIControladorPelicula();
+    iconCine = fabrica->getIControladorAltaCine();
 
     int opcion;
     do

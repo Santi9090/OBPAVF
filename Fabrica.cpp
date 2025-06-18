@@ -30,11 +30,8 @@ IControladorVerReservaPelicula* Fabrica::getIControladorVerReservaPelicula() {
 }
 
 
-
-IControladorAltaCine* Fabrica::getIControladorAltaCine() {
-    return new ControladorAltaCine();
-}
-
+*/
+/*
 IControladorAltaFuncion* Fabrica::getIControladorAltaFuncion() {
     return new ControladorAltaFuncion();
 }
@@ -47,3 +44,6 @@ IControladorPelicula* Fabrica::getIControladorPelicula() {
     return new ControladorPelicula();
 }
 
+IControladorAltaCine* Fabrica::getIControladorAltaCine() {
+    return new ControladorAltaCine();
+}

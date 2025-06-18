@@ -20,7 +20,7 @@ public:
     // IControladorVerReservaPelicula* getIControladorVerReservaPelicula();
     IControladorSesion *getIControladorSesion();
     IControladorPelicula *getIControladorPelicula();
-    // IControladorAltaCine* getIControladorAltaCine();
+    IControladorAltaCine* getIControladorAltaCine();
     // IControladorAltaFuncion* getIControladorAltaFuncion();
     ~Fabrica();
 };

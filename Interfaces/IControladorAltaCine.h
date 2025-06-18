@@ -3,11 +3,12 @@
 
 #include <string>
 #include "../DataTypes/DtDireccion.h"
+#include "../DataTypes/DtSala.h"
 using namespace std;
 
 class IControladorAltaCine {
 public:
-    virtual void AltaCine(DtDireccion direccion, string nombre) = 0;
+    virtual void AltaCine(DtDireccion direccion, map<int, DtSala> dtSalas) = 0;
 };
 
 #endif
