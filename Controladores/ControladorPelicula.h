@@ -12,7 +12,7 @@ class ControladorPelicula : public IControladorPelicula
 {
 public:
     void RegistrarPelicula(string titulo, string sinopsis, string urlFoto);
-    list<Pelicula*> ListarPeliculas();
+    list<DtPelicula> ListarPeliculas();
     bool ExistePelicula(string titulo);
     DtPelicula BuscarPelicula(string titulo);
 };

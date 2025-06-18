@@ -2,16 +2,17 @@
 #define DTCINE_H
 
 #include <iostream>
+#include "DtDireccion.h"
 using namespace std;
 
 class DtCine {
 private:
     int idCine;
-    string direccion;
+    DtDireccion direccion;
 public:
-    DtCine(int idCine, string direccion);
+    DtCine(int idCine, DtDireccion direccion);
     int getIdCine();
-    string getDireccion();
+    DtDireccion getDireccion();
     ~DtCine();
 };
 

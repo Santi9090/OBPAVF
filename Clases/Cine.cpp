@@ -1,6 +1,8 @@
 #include "Cine.h"
 #include <string>
 #include <map>
+#include <list>
+#include "../DataTypes/DtSala.h"
 using namespace std;
 
 Cine::Cine(int idCine, DtDireccion direccion)
@@ -54,9 +56,16 @@ void Cine::eliminarSala(int idSala)
     }
 }
 
-map<int, Sala *> Cine::listarSalas()
+list<DtSala> Cine::getSalas()
 {
-    return salas;
+    list<DtSala> listaSalas;
+    for (auto &sala : salas)
+    {
+        DtSala dtSala(sala.second->getId(), sala.second->getCapacidad());
+        listaSalas.push_back(dtSala);
+    }
+    return listaSalas;
+
 }
 
 Cine::~Cine()

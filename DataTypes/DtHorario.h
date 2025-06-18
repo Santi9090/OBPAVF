@@ -6,13 +6,13 @@ using namespace std;
 
 class DtHorario {
 private:
-    int hora;
-    int minuto;
+    string horaComienzo;
+    string horaFin;
 public:
-DtHorario();
-    DtHorario(int hora, int minuto);
-    int getHora() const;
-    int getMinuto() const;
+    DtHorario();
+    DtHorario(string horaComienzo, string horaFin);
+    string getHoraComienzo() ;
+    string getHoraFin();
     ~DtHorario();
 };
 

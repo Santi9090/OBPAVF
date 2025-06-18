@@ -9,6 +9,7 @@ private:
     string calle;
     int numero;
 public:
+DtDireccion();
     DtDireccion(string calle, int numero);
     string getCalle();
     int getNumero();

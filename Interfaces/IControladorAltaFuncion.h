@@ -8,7 +8,7 @@ using namespace std;
 
 class IControladorAltaFuncion {
 public:
-    virtual void AltaFuncion(int idCine, int idSala, int idFuncion, DtFecha fecha, DtHorario horario) = 0;
+    virtual void AltaFuncion(int idCine, int idSala, DtFecha fecha, DtHorario horario) = 0;
 };
 
 #endif

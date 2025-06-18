@@ -23,7 +23,7 @@ public:
     Sala* buscarSala(int idSala);
     bool existeSala(int idSala);
     void eliminarSala(int idSala);
-    map<int, Sala*> listarSalas();
+    list<DtSala> getSalas();
     ~Cine();
 };
 

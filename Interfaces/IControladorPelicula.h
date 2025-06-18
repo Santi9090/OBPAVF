@@ -9,7 +9,7 @@ using namespace std;
 
 class IControladorPelicula {
 public:
-    virtual list<Pelicula*> ListarPeliculas() = 0;
+    virtual list<DtPelicula> ListarPeliculas() = 0;
     virtual void RegistrarPelicula(string titulo, string sinopsis, string urlFoto) = 0;
     virtual bool ExistePelicula(string titulo) = 0;
     virtual DtPelicula BuscarPelicula(string titulo) = 0;

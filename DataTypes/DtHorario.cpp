@@ -1,17 +1,20 @@
 #include "DtHorario.h"
 
 DtHorario::DtHorario() {}
-DtHorario::DtHorario(int hora, int minuto) {
-    this->hora = hora;
-    this->minuto = minuto;
+DtHorario::DtHorario(string horaComienzo, string horaFin)
+{
+    this->horaComienzo = horaComienzo;
+    this->horaFin = horaFin;
 }
 
-int DtHorario::getHora() const {
-    return hora;
+string DtHorario::getHoraComienzo()
+{
+    return horaComienzo
 }
 
-int DtHorario::getMinuto() const {
-    return minuto;
+string DtHorario::getHoraFin()
+{
+    return horaFin;
 }
 
 DtHorario::~DtHorario() {}

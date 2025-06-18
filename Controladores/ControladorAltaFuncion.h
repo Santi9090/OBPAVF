@@ -14,7 +14,7 @@ using namespace std;
 class ControladorAltaFuncion: public IControladorAltaFuncion {
 public:
     ControladorAltaFuncion();
-    void AltaFuncion(int idCine, int idSala, int idFuncion, DtFecha fecha, DtHorario horario);
+    void AltaFuncion(int idCine, int idSala, DtFecha fecha, DtHorario horario);
     void obtenerFunciones();
 };
 #endif

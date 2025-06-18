@@ -12,7 +12,7 @@ void ControladorPelicula::RegistrarPelicula(string titulo, string sinopsis, stri
 	mP->agregarPelicula(pelicula);
 }
 
-list<Pelicula*> ControladorPelicula::ListarPeliculas()
+list<DtPelicula> ControladorPelicula::ListarPeliculas()
 {
 	ManejadorPelicula* mP = ManejadorPelicula::getInstancia();
 	return (mP->listarPeliculas());

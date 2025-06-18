@@ -31,11 +31,11 @@ IControladorVerReservaPelicula* Fabrica::getIControladorVerReservaPelicula() {
 
 
 */
-/*
+
 IControladorAltaFuncion* Fabrica::getIControladorAltaFuncion() {
     return new ControladorAltaFuncion();
 }
-*/
+
 
 IControladorSesion* Fabrica::getIControladorSesion() {
     return new ControladorSesion();

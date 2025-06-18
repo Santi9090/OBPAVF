@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+DtDireccion::DtDireccion() {
+}
 DtDireccion::DtDireccion(string calle, int numero) {
     this->calle = calle;
     this->numero = numero;

@@ -18,3 +18,29 @@ void ControladorAltaCine::AltaCine(DtDireccion direccion,map <int, DtSala> dtSal
     }
 }
 
+list<DtCine> ControladorAltaCine::getCines()
+{
+    ManejadorCine *Mc = ManejadorCine::getInstancia();
+    list<DtCine> listaCines;
+    for (auto &cine : Mc->getCines()) {
+        DtCine dtCine(cine->getIdCine(), cine->getDireccion());
+        listaCines.push_back(dtCine);
+    }
+    return listaCines;
+
+    
+}
+
+bool ControladorAltaCine::existeCine(int idCine) {
+    ManejadorCine *Mc = ManejadorCine::getInstancia();
+    return Mc->existeCine(idCine);
+}
+
+list<DtSala> ControladorAltaCine::listarSalas(int idCine) {
+    ManejadorCine *Mc = ManejadorCine::getInstancia();
+    Cine *cine = Mc->buscarCine(idCine);
+    if (cine == NULL) {
+        return list<DtSala>();
+    }
+    return cine->getSalas();
+}

@@ -37,10 +37,12 @@ void ManejadorPelicula::eliminarPelicula(string titulo) {
     }
 }
 
-list<Pelicula*> ManejadorPelicula::listarPeliculas() {
-    list<Pelicula*> lista;
+list<DtPelicula> ManejadorPelicula::listarPeliculas() {
+    list<DtPelicula> lista;
     for (map<string, Pelicula*>::iterator it = peliculas.begin(); it != peliculas.end(); ++it) {
-        lista.push_back(it->second);
+        Pelicula* pelicula = it->second;
+        DtPelicula dtPelicula(pelicula->getTitulo(), pelicula->getSinopsis(), pelicula->getPuntajePromedio(), pelicula->getPoster());
+        lista.push_back(dtPelicula);
     }
     return lista;
 }
