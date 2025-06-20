@@ -9,7 +9,7 @@ DtHorario::DtHorario(string horaComienzo, string horaFin)
 
 string DtHorario::getHoraComienzo()
 {
-    return horaComienzo
+    return horaComienzo;
 }
 
 string DtHorario::getHoraFin()

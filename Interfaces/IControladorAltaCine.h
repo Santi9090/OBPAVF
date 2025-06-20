@@ -17,6 +17,7 @@ public:
     virtual list<DtCine> getCines() = 0;
     virtual bool existeCine(int idCine) = 0;
     virtual list<DtSala> listarSalas(int idCine) = 0;
+    virtual DtCine encontrarCine(int idCine) = 0;
 };
 
 #endif

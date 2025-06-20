@@ -5,25 +5,30 @@
 #include <map>
 #include <list>
 #include "Sala.h"
+#include "../DataTypes/DtSala.h"
+#include "../DataTypes/DtPelicula.h"
 using namespace std;
 
-class Cine {
+class Cine
+{
 private:
     int idCine;
     DtDireccion direccion;
-    map<int, Sala*> salas;
-    map<int , Pelicula*> peliculas;
+    map<int, Sala *> salas;
+    map<int, Pelicula *> peliculas;
+
 public:
     Cine(int idCine, DtDireccion direccion);
     int getIdCine();
     DtDireccion getDireccion();
     void setIdCine(int idCine);
     void setDireccion(DtDireccion direccion);
-    void agregarSala(Sala* sala);
-    Sala* buscarSala(int idSala);
+    void agregarSala(Sala *sala);
+    Sala *buscarSala(int idSala);
     bool existeSala(int idSala);
     void eliminarSala(int idSala);
     list<DtSala> getSalas();
+    list<DtPelicula> getPeliculas();
     ~Cine();
 };
 

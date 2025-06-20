@@ -1,8 +1,10 @@
 #include "ManejadorFuncion.h"
 #include "map"
 #include <list>
-using namespace std;
+#include "../DataTypes/DtFuncion.h"
 
+
+using namespace std;
 
 ManejadorFuncion *ManejadorFuncion::instancia = nullptr;
 
@@ -15,9 +17,9 @@ ManejadorFuncion *ManejadorFuncion::getInstancia()
     }
     return instancia;
 }
-void ManejadorFuncion::agregarFuncion(int idFuncion, Funcion *funcion)
+void ManejadorFuncion::agregarFuncion(Funcion *funcion)
 {
-    funciones.insert(pair<int, Funcion *>(idFuncion, funcion));
+    funciones.insert(std::pair<int, Funcion *>(funcion->getIdFuncion(), funcion));
 }
 
 Funcion *ManejadorFuncion::buscarFuncion(int idFuncion)
@@ -32,21 +34,31 @@ void ManejadorFuncion::eliminarFuncion(int idFuncion)
     this->funciones.erase(it);
 }
 
-list<Funcion *> ManejadorFuncion::getFunciones()
-{
-    list<Funcion*> listFunciones;
-    for (map<int, Funcion *>::iterator it = this->funciones.begin(); it != funciones.end(); ++it)
-        listFunciones.push_back(it->second);
-    return listFunciones;
-}
-
 bool ManejadorFuncion::existeFuncion(int idFuncion)
 {
-  map<int, Funcion*>::iterator it = this->funciones.find(idFuncion);
-  return (it != this->funciones.end());
+    map<int, Funcion *>::iterator it = this->funciones.find(idFuncion);
+    return (it != this->funciones.end());
 }
 
+int ManejadorFuncion::generarIdFuncion()
+{
+    int contador = 0;
+    for (map<int, Funcion *>::iterator it = this->funciones.begin(); it != funciones.end(); ++it)
+    {
+        contador++;
+    }
+    return contador + 1;
+}
 
+list<Funcion*> ManejadorFuncion::getFunciones()
+{
+   list<Funcion*> lstFunciones;
+    for (map<int, Funcion *>::iterator it = this->funciones.begin(); it != funciones.end(); ++it)
+    {
+        lstFunciones.push_back(it->second);
+    }
+    return lstFunciones;
+}
 
 ManejadorFuncion::~ManejadorFuncion()
 {

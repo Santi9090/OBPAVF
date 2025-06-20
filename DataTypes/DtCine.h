@@ -3,16 +3,28 @@
 
 #include <iostream>
 #include "DtDireccion.h"
+#include "DtSala.h"
+#include "DtPelicula.h"
+#include <map>
+#include <list>
 using namespace std;
 
-class DtCine {
+class DtCine
+{
 private:
     int idCine;
     DtDireccion direccion;
+    list<DtSala> salas;
+    list<DtPelicula> peliculas;
+
 public:
-    DtCine(int idCine, DtDireccion direccion);
+    DtCine();
+    DtCine(int idCine, DtDireccion direccion, list<DtSala> salas, list<DtPelicula> peliculas);
     int getIdCine();
     DtDireccion getDireccion();
+    list<DtSala> getSalas();
+    list<DtPelicula> getPeliculas();
+
     ~DtCine();
 };
 

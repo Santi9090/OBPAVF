@@ -3,26 +3,32 @@
 
 Sala::Sala(int idSala, int capacidad) : idSala(idSala), capacidad(capacidad) {}
 
-int Sala::getId() {
+int Sala::getId()
+{
     return idSala;
 }
 
-int Sala::getCapacidad() {
+int Sala::getCapacidad()
+{
     return capacidad;
 }
 
-void Sala::setId(int idSala) {
+void Sala::setId(int idSala)
+{
     this->idSala = idSala;
 }
 
-void Sala::setCapacidad(int capacidad) {
+void Sala::setCapacidad(int capacidad)
+{
     this->capacidad = capacidad;
 }
 
-
-Sala::~Sala() {
+void Sala::agregarFuncion(Funcion *funcion)
+{
+    funciones.insert(std::pair<int, Funcion *>(funcion->getIdFuncion(), funcion));
+    
+}
+Sala::~Sala()
+{
     // Liberar memoria de funciones si corresponde
 }
-
-
-    

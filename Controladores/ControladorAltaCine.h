@@ -15,6 +15,7 @@ public:
     list<DtCine> getCines();
     bool existeCine(int idCine);
     list<DtSala> listarSalas(int idCine);
+    DtCine encontrarCine(int idCine);
 };
 
 #endif

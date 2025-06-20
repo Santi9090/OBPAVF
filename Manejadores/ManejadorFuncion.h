@@ -3,6 +3,7 @@
 #include "../Clases/Funcion.h"
 #include <string>
 #include <map>
+#include <list>
 using namespace std;
 
 class ManejadorFuncion
@@ -14,11 +15,13 @@ private:
 
 public:
     static ManejadorFuncion *getInstancia();
-    void agregarFuncion(int idFuncion, Funcion *funcion);
+    void agregarFuncion( Funcion *funcion);
     Funcion *buscarFuncion(int idFuncion);
     void eliminarFuncion(int idFuncion);
-    list<Funcion *> getFunciones();
+    int generarIdFuncion();
     bool existeFuncion(int idFuncion);
+
+    list<Funcion*> getFunciones();
     ~ManejadorFuncion();
 };
 

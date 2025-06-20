@@ -21,14 +21,15 @@ private:
     map<int, Reserva *> reservas;
 
 public:
-    Funcion(int idFuncion, DtFecha fecha, DtHorario horario);
+    Funcion(int idFuncion, DtFecha fecha, DtHorario horario, Pelicula *pelicula);
     int getIdFuncion();
     DtFecha getFecha();
     DtHorario getHorario();
+    Pelicula *getPelicula();
     void setIdFuncion(int idFuncion);
     void setFecha(DtFecha fecha);
     void setHorario(DtHorario horario);
-
+    void setPelicula(Pelicula *pelicula);
     void agregarReserva(Reserva *reserva);
     list<Reserva *> listarReservas();
 

@@ -4,6 +4,8 @@ using namespace std;
 #include "DataTypes/DtCine.h"
 #include "DataTypes/DtHorario.h"
 #include "DataTypes/DtFecha.h"
+#include "DataTypes/DtFuncion.h"
+#include "DataTypes/DtPelicula.h"
 Fabrica *fabrica;
 IControladorSesion *iconSesion;
 IControladorPelicula *iconPelicula;
@@ -189,28 +191,46 @@ void AltaFuncion()
         }
         else
         {
-           mostrarSalas(idCine);
-           cout << "_____________________________________________" << endl;
-           cout << "___________Seleccione una Sala____________" << endl;
-           int idSala;
-           cout << "Ingrese el ID de la sala: ";
-           cin >> idSala;
-
-           DtHorario horario;
-           DtFecha fecha;
-           int anio,mes,dia;
-           string horaComienzo, horaFin;
-            
-           cout << "Ingrese la fecha de la función (DD MM AAAA): ";
-           cin >> dia >> mes >> anio;
-           fecha = DtFecha(dia, mes, anio);
-           cout << "Ingrese la hora de la función (HH MM): ";
-           cin >> horaComienzo >> horaFin;
-           horario = DtHorario(horaComienzo, horaFin);
-
-           iconFuncion->AltaFuncion(idCine, idSala, fecha, horario);
-
-        }return;
+            int opcion = 0;
+            do
+            {
+                cout << "_____________________________________________" << endl;
+                cout << "___________LISTA DE SALAS____________" << endl;
+                list<DtSala> salas = iconCine->listarSalas(idCine);
+                for (auto &sala : salas)
+                {
+                    cout << "ID de Sala: " << sala.getIdSala() << endl;
+                    cout << "Capacidad: " << sala.getCapacidad() << endl;
+                }
+                cout << "_____________________________________________" << endl;
+                cout << "___________Seleccione una Sala____________" << endl;
+                int idSala;
+                cout << "Ingrese el ID de la sala: ";
+                cin >> idSala;
+                DtHorario horario;
+                DtFecha fecha;
+                int anio, mes, dia;
+                string horaComienzo, horaFin;
+                cout << "Ingrese dia : " << endl;
+                cin >> dia;
+                cout << "Ingrese mes : " << endl;
+                cin >> mes;
+                cout << "Ingrese año : " << endl;
+                cin >> anio;
+                fecha = DtFecha(dia, mes, anio);
+                cout << "Ingrese la hora comienzo : " << endl;
+                cin >> horaComienzo;
+                cout << "Ingrese la hora fin : " << endl;
+                cin >> horaFin;
+                horario = DtHorario(horaComienzo, horaFin);
+                cout << "PASO DTHORARIO/n" << endl;
+                iconFuncion->AltaFuncion(idCine, idSala, fecha, horario, titulo);
+                cout << "Función registrada exitosamente." << endl;
+                cout << "_____________________________________________" << endl;
+                cout << "¿Desea registrar otra función? (1-Sí, 0-No): ";
+                cin >> opcion;
+            } while (opcion != 0);
+        }
     }
 }
 void mostrarSalas(int idCine)
@@ -225,6 +245,110 @@ void mostrarSalas(int idCine)
     }
 }
 
+void mostrarFunciones()
+{
+
+    cout << "_____________________________________________" << endl;
+    cout << "___________LISTA DE FUNCIONES____________" << endl;
+    list<DtFuncion> funciones = iconFuncion->listarFunciones();
+    for (list<DtFuncion>::iterator it = funciones.begin(); it != funciones.end(); ++it)
+    {
+        cout << "ID de Función: " << it->getIdFuncion() << endl;
+        cout << "Fecha: " << it->getFecha().getDia() << "/" << it->getFecha().getMes() << "/" << it->getFecha().getAnio() << endl;
+        cout << "Horario: " << it->getHorario().getHoraComienzo() << " - " << it->getHorario().getHoraFin() << endl;
+        cout << "Película: " << it->getPelicula().getTitulo() << endl;
+        cout << "Sinopsis: " << it->getPelicula().getSinopsis() << endl;
+    }
+}
+void altaReserva()
+{
+    string pelicula;
+    cout << "_____________________________________________" << endl;
+    cout << "___________LISTA DE PELICULAS____________" << endl;
+    list<DtPelicula> peliculas = iconPelicula->ListarPeliculas();
+    for (list<DtPelicula>::iterator it = peliculas.begin(); it != peliculas.end(); ++it)
+    {
+        cout << "Título: " << it->getTitulo() << endl;
+    }
+    cout << "Ingrese el título de la película: (0 para cancelar) ";
+    cin >> pelicula;
+    if (pelicula == "0")
+    {
+        cout << "SE CANCELA LA RESERVA" << endl;
+    }
+    else
+    {
+        cout << "_____________________________________________" << endl;
+        cout << "___________OTROS DATOS DE LA PELICULA____________" << endl;
+        list<DtPelicula> peliculas = iconPelicula->ListarPeliculas();
+        for (list<DtPelicula>::iterator it = peliculas.begin(); it != peliculas.end(); ++it)
+        {
+            if (pelicula == it->getTitulo())
+            {
+                DtPelicula lapelicula = *it;
+                cout << "Poster: " << it->getPoster() << endl;
+                cout << "Sinopsis: " << it->getSinopsis() << endl;
+            }
+        }
+        cout << "Desea ver información de la película? (1-Sí, 0-No): ";
+        int opcion;
+        cin >> opcion;
+        if (opcion == 0)
+        {
+            cout << "SE CANCELA LA RESERVA" << endl;
+        }
+        else
+        {
+            cout << "_____________________________________________" << endl;
+            cout << "_________CINES QUE TIENEN LA PELICULA________" << endl;
+            list<DtCine> cines = iconCine->getCines();
+            for (list<DtCine>::iterator it = cines.begin(); it != cines.end(); ++it)
+            {
+                list<DtPelicula> peliculas = it->getPeliculas();
+                for (list<DtPelicula>::iterator ti = peliculas.begin(); ti != peliculas.end(); ++ti)
+                {
+                    if (ti->getTitulo() == pelicula)
+                    {
+                        cout << "ID-Cine : " << it->getIdCine() << endl;
+                    }
+                }
+            }
+            cout << "Ingrese el ID del cine: (0 Para cancelar) ";
+            int idCine;
+            cin >> idCine;
+            if (idCine == 0)
+            {
+                cout << "SE CANCELA LA RESERVA" << endl;
+            }
+            else
+            {
+                for (list<DtCine>::iterator it = cines.begin(); it != cines.end(); ++it)
+                {
+                    if (idCine == it->getIdCine())
+                    {
+                        DtCine 
+                    }
+                }
+                string a = cine->getDireccion();
+                cout << "Calle: " << a << endl;
+                cout << "Número: " << cine->getDireccion().getNumero() << endl;
+                mostrarSalas(idCine);
+                cout << "Ingrese el ID de la sala: (0 Para cancelar) ";
+                int idSala;
+                cin >> idSala;
+                if (idSala == 0)
+                {
+                    cout << "SE CANCELA LA RESERVA" << endl;
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+    }
+}
+
 void menu2()
 {
     cout << "_____________________________________________" << endl;
@@ -232,6 +356,7 @@ void menu2()
     cout << "1- Registrar Película" << endl;
     cout << "2- Registrar Cine" << endl;
     cout << "3- Registrar Funcion" << endl;
+    cout << "6- Listar Funciones" << endl;
     cout << "7- Listar Películas" << endl;
     cout << "8- Listar Cines" << endl;
     cout << "9- Registrar Usuario" << endl;
@@ -245,7 +370,7 @@ int main()
     iconSesion = fabrica->getIControladorSesion();
     iconPelicula = fabrica->getIControladorPelicula();
     iconCine = fabrica->getIControladorAltaCine();
-
+    iconFuncion = fabrica->getIControladorAltaFuncion();
     int opcion;
     do
     {
@@ -282,7 +407,11 @@ int main()
         case 3:
             AltaFuncion();
             break;
-
+        case 4:
+            altaReserva(); // Asumiendo que el ID del cine es 1 para mostrar las salas
+        case 6:
+            mostrarFunciones();
+            break;
         case 7:
             listarPeliculas();
             break;

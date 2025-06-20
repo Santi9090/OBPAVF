@@ -2,12 +2,13 @@
 #include "Reserva.h"
 #include "Debito.h"
 #include "Credito.h"
+#
 
-
-Funcion::Funcion(int idFuncion, DtFecha fecha, DtHorario horario) {
+Funcion::Funcion(int idFuncion, DtFecha fecha, DtHorario horario, Pelicula *pelicula) {
     this->idFuncion = idFuncion;
     this->fecha = fecha;
     this->horario = horario;
+    this->pelicula = pelicula;
 }
 
 int Funcion::getIdFuncion() {
@@ -21,6 +22,9 @@ DtFecha Funcion::getFecha() {
 DtHorario Funcion::getHorario() {
     return horario;
 }
+Pelicula * Funcion::getPelicula(){
+    return pelicula;
+}
 
 void Funcion::setIdFuncion(int idFuncion) {
     this->idFuncion = idFuncion;
@@ -32,6 +36,9 @@ void Funcion::setFecha(DtFecha fecha) {
 
 void Funcion::setHorario(DtHorario horario) {
     this->horario = horario;
+}
+void Funcion::setPelicula(Pelicula *pelicula) {
+    this->pelicula = pelicula;
 }
 
 void Funcion::agregarReserva(Reserva *reserva)

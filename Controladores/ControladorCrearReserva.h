@@ -15,7 +15,6 @@ class ControladorCrearReserva : public IControladorCrearReserva
 public:
     list<Pelicula*> listarPeliculas();
     list<Cine*> listarCines();
-    list<Funcion*> listarFunciones();
     void CrearReserva(Funcion* funcion, DtReserva reserva);
 };
 

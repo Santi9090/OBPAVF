@@ -2,26 +2,31 @@
 #include <iostream>
 using namespace std;
 
-DtPelicula::DtPelicula(string titulo, string sinopsis, float puntajePromedio, string poster) {
+DtPelicula::DtPelicula(string titulo, string sinopsis, float puntajePromedio, string poster)
+{
     this->titulo = titulo;
     this->sinopsis = sinopsis;
     this->puntajePromedio = puntajePromedio;
     this->poster = poster;
 }
 
-string DtPelicula::getTitulo() const {
+string DtPelicula::getTitulo()
+{
     return titulo;
 }
 
-string DtPelicula::getSinopsis() const {
+string DtPelicula::getSinopsis()
+{
     return sinopsis;
 }
 
-float DtPelicula::getPuntajePromedio() const {
+float DtPelicula::getPuntajePromedio()
+{
     return puntajePromedio;
 }
 
-string DtPelicula::getPoster() const {
+string DtPelicula::getPoster()
+{
     return poster;
 }
 

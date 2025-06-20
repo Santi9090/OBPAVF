@@ -1,21 +1,30 @@
 #include "DtFuncion.h"
 
-DtFuncion::DtFuncion(int idFuncion, DtFecha fecha, DtHorario horario) {
+DtFuncion::DtFuncion(int idFuncion, DtFecha fecha, DtHorario horario,DtPelicula pelicula)
+    : pelicula(pelicula) 
+{
     this->idFuncion = idFuncion;
     this->fecha = fecha;
     this->horario = horario;
+    this->pelicula = pelicula; 
 }
 
-int DtFuncion::getIdFuncion() const {
+int DtFuncion::getIdFuncion()
+{
     return idFuncion;
 }
 
-DtFecha DtFuncion::getFecha() const {
+DtFecha DtFuncion::getFecha()
+{
     return fecha;
 }
 
-DtHorario DtFuncion::getHorario() const {
+DtHorario DtFuncion::getHorario()
+{
     return horario;
 }
-
+DtPelicula DtFuncion::getPelicula()
+{
+    return pelicula;
+}
 DtFuncion::~DtFuncion() {}

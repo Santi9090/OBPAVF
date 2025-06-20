@@ -19,6 +19,10 @@ public:
     int getCapacidad();
     void setId(int id);
     void setCapacidad(int capacidad);
+    void agregarFuncion(Funcion* funcion);
+
+
+    
     ~Sala();
 };
 

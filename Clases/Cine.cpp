@@ -3,6 +3,8 @@
 #include <map>
 #include <list>
 #include "../DataTypes/DtSala.h"
+#include "../DataTypes/DtPelicula.h"
+#include "Pelicula.h"
 using namespace std;
 
 Cine::Cine(int idCine, DtDireccion direccion)
@@ -66,6 +68,16 @@ list<DtSala> Cine::getSalas()
     }
     return listaSalas;
 
+}
+
+list<DtPelicula> Cine::getPeliculas(){
+    list<DtPelicula> listaPeliculas;
+    for (auto &pelicula : peliculas)
+    {
+        DtPelicula dtPelicula(pelicula.second->getTitulo(), pelicula.second->getSinopsis(), pelicula.second->getPuntajePromedio(), pelicula.second->getPoster());
+        listaPeliculas.push_back(dtPelicula);
+    }
+    return listaPeliculas;
 }
 
 Cine::~Cine()

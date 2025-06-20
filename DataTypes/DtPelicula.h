@@ -11,10 +11,10 @@ private:
     string poster;
 public:
     DtPelicula(string titulo, string sinopsis, float puntajePromedio, string poster);
-    string getTitulo() const;
-    string getSinopsis() const;
-    float getPuntajePromedio() const;
-    string getPoster() const;
+    string getTitulo();
+    string getSinopsis() ;
+    float getPuntajePromedio() ;
+    string getPoster();
     ~DtPelicula();
 };
 
