@@ -46,15 +46,15 @@ void Funcion::agregarReserva(Reserva *reserva)
     try
     {
         Debito *preserva = dynamic_cast<Debito *>(reserva);
-        Debito *debito = new Debito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getBanco());
-        this->reservas.insert(std::pair<int, Reserva *>(debito->getCosto(), debito));
+        Debito *debito = new Debito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getBanco(),preserva->getIdReserva());
+        this->reservas.insert(std::pair<int, Reserva *>(debito->getIdReserva(), debito));
     }
     catch (bad_cast)
     {
         try{
         Credito *preserva = dynamic_cast<Credito *>(reserva);
-        Credito *credito = new Credito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getDescuento(), preserva->getFinanciera());
-        this->reservas.insert(std::pair<int, Reserva *>(credito->getCosto(), credito));
+        Credito *credito = new Credito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getDescuento(), preserva->getFinanciera(),preserva->getIdReserva());
+        this->reservas.insert(std::pair<int, Reserva *>(credito->getIdReserva(), credito));
         }
         catch (bad_cast){}
     }

@@ -1,6 +1,6 @@
 #include "DtDebito.h"
-DtDebito::DtDebito(float costo, int cantEntradas, string banco)
-    : DtReserva(costo, cantEntradas) {
+DtDebito::DtDebito(float costo, int cantEntradas, string banco,int idReserva)
+    : DtReserva(costo, cantEntradas,idReserva) {
         this->banco = banco;
     }
 

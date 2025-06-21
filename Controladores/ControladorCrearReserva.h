@@ -15,6 +15,8 @@ class ControladorCrearReserva : public IControladorCrearReserva
 public:
 
     void CrearReserva(int idfuncion,string pelicula ,DtReserva Reserva);
+    //void VerReservaDePelicula(string titulo, string nombreCliente, int cantidadEntradas);
+    int GenerarIdReserva(int idfuncion);
 };
 
 #endif

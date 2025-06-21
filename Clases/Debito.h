@@ -8,7 +8,7 @@ class Debito : public Reserva {
 private:
     string banco;
 public:
-    Debito(float costo, int cantEntradas, string banco);
+    Debito(float costo, int cantEntradas, string banco,int idReserva);
     string getBanco();
     void setBanco(string banco);
     ~Debito();

@@ -7,8 +7,9 @@ using namespace std;
 
 class IControladorCrearReserva {
 public:
-    virtual void VerReservaDePelicula(string titulo, string nombreCliente, int cantidadEntradas) = 0;
+    //virtual void VerReservaDePelicula(string titulo, string nombreCliente, int cantidadEntradas) = 0;
     virtual void CrearReserva(int idfuncion,string pelicula ,DtReserva Reserva) = 0;
+    virtual int GenerarIdReserva(int idfuncion) = 0;
 };
 
 #endif

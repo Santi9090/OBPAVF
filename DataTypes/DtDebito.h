@@ -10,7 +10,7 @@ private:
     string banco;
 
 public:
-    DtDebito(float costo, int cantEntradas, string banco);
+    DtDebito(float costo, int cantEntradas, string banco,int idReserva);
     string getBanco();
 };
 

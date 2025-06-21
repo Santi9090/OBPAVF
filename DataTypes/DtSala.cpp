@@ -3,12 +3,11 @@
 using namespace std;
 
 
-DtSala::DtSala(int idSala, int capacidad,map <int , DtFuncion> funciones)
+DtSala::DtSala(int idSala, int capacidad)
 {
     this->idSala = idSala;
     this->capacidad = capacidad;
-    this->funciones =  funciones;
-}
+    this->funciones = map<int, DtFuncion>();}
 
 int DtSala::getIdSala()
 {

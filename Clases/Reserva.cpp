@@ -1,6 +1,6 @@
 #include "Reserva.h"
 
-Reserva::Reserva(float costo, int cantEntradas) : costo(costo), cantEntradas(cantEntradas) {}
+Reserva::Reserva(int idReserva, float costo, int cantEntradas) : idReserva(idReserva), costo(costo), cantEntradas(cantEntradas) {}
 
 float Reserva::getCosto()
 {
@@ -17,5 +17,9 @@ void Reserva::setCosto(float costo)
 void Reserva::setCantEntradas(int cantEntradas)
 {
     this->cantEntradas = cantEntradas;
+}
+int Reserva::getIdReserva()
+{
+    return idReserva;
 }
 Reserva::~Reserva() {}

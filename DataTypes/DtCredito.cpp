@@ -1,7 +1,7 @@
 #include "DtCredito.h"
 #include "DtReserva.h"
-DtCredito::DtCredito(float costo, int cantEntradas, float porcentajeDescuento, string financiera)
-    : DtReserva(costo, cantEntradas)
+DtCredito::DtCredito(float costo, int cantEntradas, float porcentajeDescuento, string financiera,int idReserva)
+    : DtReserva(costo, cantEntradas,idReserva)
 {
     this->porcentajeDescuento = porcentajeDescuento;
     this->financiera = financiera;

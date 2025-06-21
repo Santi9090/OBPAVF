@@ -6,11 +6,16 @@ using namespace std;
 #include "DataTypes/DtFecha.h"
 #include "DataTypes/DtFuncion.h"
 #include "DataTypes/DtPelicula.h"
+#include "DataTypes/DtCredito.h"
+#include "DataTypes/DtDebito.h"
+#include "DataTypes/DtReserva.h"
+
 Fabrica *fabrica;
 IControladorSesion *iconSesion;
 IControladorPelicula *iconPelicula;
 IControladorAltaCine *iconCine;
 IControladorAltaFuncion *iconFuncion;
+IControladorCrearReserva *iconReserva;
 
 struct RelojSistema
 {
@@ -390,6 +395,14 @@ void altaReserva()
                         string banco;
                         cout << "Ingresar Nombre del banco : " << endl;
                         cin >> banco;
+                        cout << "Desea crear la reserva (1-Si 0-No)." << endl;
+                        int opc;
+                        cin >> opc;
+                        if (opc == 1)
+                        {
+                            DtDebito debito(500 * asientos, asientos, banco, 0);
+                            iconReserva->CrearReserva(id, pelicula, debito);
+                        }
                     }
                     else if (pago == 2)
                     {
@@ -403,7 +416,14 @@ void altaReserva()
                         cin >> opt;
                         if (opt == 1)
                         {
-                            iconCrearReserva->crearReserva()
+                            cout << "Desea crear la reserva (1-Si 0-No)." << endl;
+                            int opc;
+                            cin >> opc;
+                            if (opc == 1)
+                            {
+                                DtCredito credito(500 * asientos, asientos, 0.0, financiera, 0);
+                                iconReserva->CrearReserva(id, pelicula, credito);
+                            }
                         }
                         else
                         {
@@ -462,6 +482,7 @@ int main()
     iconPelicula = fabrica->getIControladorPelicula();
     iconCine = fabrica->getIControladorAltaCine();
     iconFuncion = fabrica->getIControladorAltaFuncion();
+    iconReserva = fabrica->getIControladorCrearReserva();
     DtFecha fecha(1, 1, 1);
     DtHorario fhora(0, 0);
     reloj->fecha = fecha;

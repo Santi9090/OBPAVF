@@ -1,7 +1,7 @@
 #include "Credito.h"
 
-Credito::Credito(float costo, int cantEntradas, float descuento, string financiera)
-    : Reserva(costo, cantEntradas), descuento(descuento), financiera(financiera) {}
+Credito::Credito(float costo, int cantEntradas, float descuento, string financiera, int idReserva)
+    : Reserva(costo, cantEntradas, idReserva), descuento(descuento), financiera(financiera) {}
 float Credito::getDescuento()
 {
     return descuento;
