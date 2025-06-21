@@ -14,6 +14,7 @@ public:
     DtReserva(float costo, int cantEntradas);
     float getCosto();
     int getCantEntradas();
+    virtual ~DtReserva();  
 };
 
 #endif

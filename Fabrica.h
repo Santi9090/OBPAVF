@@ -16,7 +16,7 @@ private:
 
 public:
     static Fabrica *getInstancia();
-    // IControladorCrearReserva* getIControladorCrearReserva();
+    IControladorCrearReserva* getIControladorCrearReserva();
     // IControladorVerReservaPelicula* getIControladorVerReservaPelicula();
     IControladorSesion *getIControladorSesion();
     IControladorPelicula *getIControladorPelicula();

@@ -32,9 +32,8 @@ void Cine::setDireccion(DtDireccion direccion)
 
 void Cine::agregarSala(Sala *sala)
 {
-    salas.insert(std::pair<int,Sala*>(sala->getId(),sala));
+    salas.insert(std::pair<int, Sala *>(sala->getId(), sala));
 }
-
 
 Sala *Cine::buscarSala(int idSala)
 {
@@ -67,10 +66,10 @@ list<DtSala> Cine::getSalas()
         listaSalas.push_back(dtSala);
     }
     return listaSalas;
-
 }
 
-list<DtPelicula> Cine::getPeliculas(){
+list<DtPelicula> Cine::getPeliculas()
+{
     list<DtPelicula> listaPeliculas;
     for (auto &pelicula : peliculas)
     {
@@ -79,7 +78,10 @@ list<DtPelicula> Cine::getPeliculas(){
     }
     return listaPeliculas;
 }
-
+void Cine::agregarPelicula(Pelicula *pelicula)
+{
+    peliculas.insert(std::pair<string, Pelicula *>(pelicula->getTitulo(), pelicula));
+}
 Cine::~Cine()
 {
 }

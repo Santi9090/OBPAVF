@@ -14,9 +14,10 @@ private:
     int capacidad;
      map <int, DtFuncion> funciones;
 public:
-    DtSala(int idSala, int capacidad);
+    DtSala(int idSala, int capacidad, map <int,DtFuncion> funciones);
     int getIdSala();
     int getCapacidad();
+    list<DtFuncion> getFunciones();
     ~DtSala();
 };
 

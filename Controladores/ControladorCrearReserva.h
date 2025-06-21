@@ -13,9 +13,8 @@ using namespace std;
 class ControladorCrearReserva : public IControladorCrearReserva
 {
 public:
-    list<Pelicula*> listarPeliculas();
-    list<Cine*> listarCines();
-    void CrearReserva(Funcion* funcion, DtReserva reserva);
+
+    void CrearReserva(int idfuncion,string pelicula ,DtReserva Reserva);
 };
 
 #endif

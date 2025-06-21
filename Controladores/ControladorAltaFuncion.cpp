@@ -30,19 +30,14 @@ void ControladorAltaFuncion::AltaFuncion(int idCine, int idSala, DtFecha fecha, 
         cout << "La película no existe." << endl;
         return;
     }
-
     Sala *sala = cine->buscarSala(idSala);
-
     int idFuncion = mF->generarIdFuncion();
-
     Pelicula *peli = mP->buscarPelicula(titulo);
 
     Funcion *funcion = new Funcion(idFuncion, fecha, horario, peli);
-
     sala->agregarFuncion(funcion);
-
     mF->agregarFuncion(funcion);
-
+    cine->agregarPelicula(peli);
     cout << "Función registrada con éxito." << endl;
 }
 

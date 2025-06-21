@@ -7,6 +7,7 @@
 #include "Sala.h"
 #include "../DataTypes/DtSala.h"
 #include "../DataTypes/DtPelicula.h"
+#include "Pelicula.h"
 using namespace std;
 
 class Cine
@@ -15,7 +16,7 @@ private:
     int idCine;
     DtDireccion direccion;
     map<int, Sala *> salas;
-    map<int, Pelicula *> peliculas;
+    map<string, Pelicula *> peliculas;
 
 public:
     Cine(int idCine, DtDireccion direccion);
@@ -29,7 +30,9 @@ public:
     void eliminarSala(int idSala);
     list<DtSala> getSalas();
     list<DtPelicula> getPeliculas();
+    void agregarPelicula( Pelicula * pelicula);
     ~Cine();
+
 };
 
 #endif

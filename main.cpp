@@ -12,6 +12,12 @@ IControladorPelicula *iconPelicula;
 IControladorAltaCine *iconCine;
 IControladorAltaFuncion *iconFuncion;
 
+struct RelojSistema
+{
+    DtFecha fecha;
+    DtHorario hora;
+};
+RelojSistema *reloj = new (RelojSistema);
 void menu()
 {
     cout << "_____________________________________________" << endl;
@@ -304,13 +310,13 @@ void altaReserva()
             list<DtCine> cines = iconCine->getCines();
             for (list<DtCine>::iterator it = cines.begin(); it != cines.end(); ++it)
             {
-                cout << "ID Prueba: " << it->getIdCine() << endl;
+
                 list<DtPelicula> peliculas = it->getPeliculas();
                 for (list<DtPelicula>::iterator it2 = peliculas.begin(); it2 != peliculas.end(); ++it2)
                 {
-                    cout << "ID Prueba: " << it->getIdCine() << endl;
                     if (it2->getTitulo() == pelicula)
                     {
+
                         cout << "Cine: " << it->getDireccion().getCalle() << endl;
                         cout << "Número: " << it->getDireccion().getNumero() << endl;
                         cout << "ID: " << it->getIdCine() << endl;
@@ -327,7 +333,6 @@ void altaReserva()
             else
             {
                 DtCine cine = iconCine->encontrarCine(idCine);
-                mostrarSalas(idCine);
                 cout << "Ingrese el ID de la sala: (0 Para cancelar) ";
                 int idSala;
                 cin >> idSala;
@@ -337,13 +342,100 @@ void altaReserva()
                 }
                 else
                 {
-                    
+
+                    list<DtSala> salas = cine.getSalas();
+                    for (list<DtSala>::iterator it = salas.begin(); it != salas.end(); ++it)
+                    {
+                        list<DtFuncion> funciones = it->getFunciones();
+                        for (list<DtFuncion>::iterator it2 = funciones.begin(); it2 != funciones.end(); ++it2)
+                        {
+                            if (pelicula == it2->getPelicula().getTitulo())
+                            {
+                                if (reloj->fecha.getAnio() < it2->getFecha().getAnio())
+                                {
+                                    cout << "Asientos Disponibles : " << it->getCapacidad();
+                                    cout << "Id de la funcion : " << it2->getIdFuncion() << endl;
+                                }
+                                else if (reloj->fecha.getAnio() == it2->getFecha().getAnio())
+                                {
+                                    if (reloj->fecha.getMes() < it2->getFecha().getMes())
+                                    {
+                                        cout << "Asientos Disponibles : " << it->getCapacidad();
+                                        cout << "Id de la funcion : " << it2->getIdFuncion() << endl;
+                                    }
+                                    else if (reloj->fecha.getMes() == it2->getFecha().getMes())
+                                    {
+                                        if (reloj->fecha.getDia() < it2->getFecha().getDia())
+                                        {
+                                            cout << "Asientos Disponibles : " << it->getCapacidad();
+                                            cout << "Id de la funcion : " << it2->getIdFuncion() << endl;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    int id, asientos, pago;
+
+                    cout << "_____Seleccionar Funcion_____" << endl;
+                    cout << "Selecionar id: " << endl;
+                    cin >> id;
+                    cout << "Selccionar cantidad de asientos: " << endl;
+                    cin >> asientos;
+                    cout << "Ingresar Medio de pago: (1-debito 2-Credito) " << endl;
+                    cin >> pago;
+                    if (pago == 1)
+                    {
+                        string banco;
+                        cout << "Ingresar Nombre del banco : " << endl;
+                        cin >> banco;
+                    }
+                    else if (pago == 2)
+                    {
+                        string financiera;
+                        int opt;
+                        cout << "Ingresar Financiera : " << endl;
+                        cin >> financiera;
+                        cout << "Sin descuento " << endl;
+                        cout << "El precio es de : " << 500 * asientos << endl;
+                        cout << "Quiere continuar: (1-Si 0-No)" << endl;
+                        cin >> opt;
+                        if (opt == 1)
+                        {
+                            iconCrearReserva->crearReserva()
+                        }
+                        else
+                        {
+                        }
+                    }
                 }
             }
         }
     }
 }
+void cambiarHoraSistema()
+{
+    int dia, mes, anio;
+    string hora, minuto;
+    cout << "____________________________" << endl;
+    cout << "________CAMBIAR HORA________" << endl;
+    cout << "Ingresar hora : [dd mm aaaa hh mm]" << endl;
+    cin >> dia >> mes >> anio >> hora >> minuto;
+    DtFecha fecha(dia, mes, anio);
+    DtHorario fhora(hora, minuto);
+    reloj->fecha = fecha;
+    reloj->hora = fhora;
+}
 
+void consultarHoraSistema()
+{
+
+    cout << "________HORA SISTEMA________" << endl;
+    cout << reloj->fecha.getAnio() << "/" << reloj->fecha.getMes() << "/" << reloj->fecha.getDia() << " "
+         << reloj->hora.getHoraComienzo() << ":" << reloj->hora.getHoraFin() << endl;
+    cout << "____________________________" << endl;
+}
 void menu2()
 {
     cout << "_____________________________________________" << endl;
@@ -356,17 +448,24 @@ void menu2()
     cout << "7- Listar Películas" << endl;
     cout << "8- Listar Cines" << endl;
     cout << "9- Registrar Usuario" << endl;
+    cout << "10- Cambiar hora sistema " << endl;
+    cout << "11- Ver Hora sistema" << endl;
     cout << "0- Cerrar Sesión" << endl;
     cout << "_____________________________________________" << endl;
 }
 
 int main()
 {
+
     fabrica = Fabrica::getInstancia();
     iconSesion = fabrica->getIControladorSesion();
     iconPelicula = fabrica->getIControladorPelicula();
     iconCine = fabrica->getIControladorAltaCine();
     iconFuncion = fabrica->getIControladorAltaFuncion();
+    DtFecha fecha(1, 1, 1);
+    DtHorario fhora(0, 0);
+    reloj->fecha = fecha;
+    reloj->hora = fhora;
     int opcion;
     do
     {
@@ -417,6 +516,12 @@ int main()
             break;
         case 9:
             AltaUsuario();
+            break;
+        case 10:
+            cambiarHoraSistema();
+            break;
+        case 11:
+            consultarHoraSistema();
             break;
         case 0:
             iconSesion->cerrarSesion();
