@@ -304,12 +304,16 @@ void altaReserva()
             list<DtCine> cines = iconCine->getCines();
             for (list<DtCine>::iterator it = cines.begin(); it != cines.end(); ++it)
             {
+                cout << "ID Prueba: " << it->getIdCine() << endl;
                 list<DtPelicula> peliculas = it->getPeliculas();
-                for (list<DtPelicula>::iterator ti = peliculas.begin(); ti != peliculas.end(); ++ti)
+                for (list<DtPelicula>::iterator it2 = peliculas.begin(); it2 != peliculas.end(); ++it2)
                 {
-                    if (ti->getTitulo() == pelicula)
+                    cout << "ID Prueba: " << it->getIdCine() << endl;
+                    if (it2->getTitulo() == pelicula)
                     {
-                        cout << "ID-Cine : " << it->getIdCine() << endl;
+                        cout << "Cine: " << it->getDireccion().getCalle() << endl;
+                        cout << "Número: " << it->getDireccion().getNumero() << endl;
+                        cout << "ID: " << it->getIdCine() << endl;
                     }
                 }
             }
@@ -322,16 +326,7 @@ void altaReserva()
             }
             else
             {
-                for (list<DtCine>::iterator it = cines.begin(); it != cines.end(); ++it)
-                {
-                    if (idCine == it->getIdCine())
-                    {
-                        DtCine 
-                    }
-                }
-                string a = cine->getDireccion();
-                cout << "Calle: " << a << endl;
-                cout << "Número: " << cine->getDireccion().getNumero() << endl;
+                DtCine cine = iconCine->encontrarCine(idCine);
                 mostrarSalas(idCine);
                 cout << "Ingrese el ID de la sala: (0 Para cancelar) ";
                 int idSala;
@@ -356,6 +351,7 @@ void menu2()
     cout << "1- Registrar Película" << endl;
     cout << "2- Registrar Cine" << endl;
     cout << "3- Registrar Funcion" << endl;
+    cout << "4- Registrar Reserva" << endl;
     cout << "6- Listar Funciones" << endl;
     cout << "7- Listar Películas" << endl;
     cout << "8- Listar Cines" << endl;
@@ -408,7 +404,8 @@ int main()
             AltaFuncion();
             break;
         case 4:
-            altaReserva(); // Asumiendo que el ID del cine es 1 para mostrar las salas
+            altaReserva();
+            break;
         case 6:
             mostrarFunciones();
             break;

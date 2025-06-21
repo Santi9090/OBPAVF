@@ -28,19 +28,21 @@ DtDireccion DtCine::getDireccion()
 list<DtSala> DtCine::getSalas()
 {
     list<DtSala> listaSalas;
-    for (map<int, DtSala>::iterator it = this->salas.begin(); it != salas.end(); ++it)
+    for (list<DtSala>::iterator it = this->salas.begin(); it != salas.end(); ++it)
     {
-        listaSalas.push_back(it->second);
+        listaSalas.push_back(*it);
     }
+    return listaSalas;
 }
 
 list<DtPelicula> DtCine::getPeliculas()
 {
     list<DtPelicula> listaPeliculas;
-    for (map<int, DtPelicula>::iterator it = this->peliculas.begin(); it != peliculas.end(); ++it)
+    for (list<DtPelicula>::iterator it = this->peliculas.begin(); it != peliculas.end(); ++it)
     {
-        listaPeliculas.push_back(it->second);
+        listaPeliculas.push_back(*it);
     }
+    return listaPeliculas;
 }
 
 DtCine::~DtCine() {}
