@@ -18,7 +18,7 @@
 
 using namespace std;
 
-void ControladorCrearReserva::CrearReserva(int idCine,int idSala, int idfuncion, string pelicula, DtReserva dtReserva)
+void ControladorCrearReserva::CrearReserva(int idCine, int idSala, int idfuncion, string pelicula, DtReserva &dtReserva)
 {
     ManejadorFuncion *mF = ManejadorFuncion::getInstancia();
     ManejadorCine *mC = ManejadorCine::getInstancia();
@@ -27,12 +27,10 @@ void ControladorCrearReserva::CrearReserva(int idCine,int idSala, int idfuncion,
     Sala *sala = cine->buscarSala(idSala);
     sala->setCapacidad(sala->getCapacidad() - dtReserva.getCantEntradas());
 
-
     try
     {
         DtDebito &dtDebito = dynamic_cast<DtDebito &>(dtReserva);
         Debito *debito = new Debito(dtDebito.getCosto(), dtDebito.getCantEntradas(), dtDebito.getBanco(), GenerarIdReserva(idfuncion));
-
         funcion->agregarReserva(debito);
     }
     catch (bad_cast)
@@ -45,6 +43,7 @@ void ControladorCrearReserva::CrearReserva(int idCine,int idSala, int idfuncion,
         }
         catch (bad_cast)
         {
+            cout << "FALLO INGRESAR RESERVA" << endl;
         }
     }
 }
@@ -59,10 +58,6 @@ int ControladorCrearReserva::GenerarIdReserva(int idfuncion)
     {
         contador++;
     }
-    if(contador == 0)
-    {
-        return contador;
-    }else
     return contador + 1;
 }
 
@@ -99,14 +94,11 @@ void ControladorCrearReserva::ListarFuncionesPeli(string pelicula, int idCine, D
     list<Sala *> salas = cine->getSalas();
     for (list<Sala *>::iterator it = salas.begin(); it != salas.end(); ++it)
     {
-        cout << "1" << endl;
         list<Funcion *> funciones = (*it)->getFunciones();
         for (list<Funcion *>::iterator it2 = funciones.begin(); it2 != funciones.end(); ++it2)
         {
-            cout << "2" << endl;
             if (peli->getTitulo() == (*it2)->getPelicula()->getTitulo())
             {
-                cout << "3" << endl;
 
                 if (reloj->fecha.getAnio() < (*it2)->getFecha().getAnio())
                 {

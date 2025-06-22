@@ -18,7 +18,6 @@ IControladorAltaFuncion *iconFuncion;
 IControladorCrearReserva *iconReserva;
 IControladorVerReservaPelicula *iconVerReservaPelicula;
 
-
 struct RelojSistema
 {
     DtFecha fecha;
@@ -290,18 +289,7 @@ void altaReserva()
     }
     else
     {
-        cout << "_____________________________________________" << endl;
-        cout << "___________OTROS DATOS DE LA PELICULA____________" << endl;
-        list<DtPelicula> peliculas = iconPelicula->ListarPeliculas();
-        for (list<DtPelicula>::iterator it = peliculas.begin(); it != peliculas.end(); ++it)
-        {
-            if (pelicula == it->getTitulo())
-            {
-                DtPelicula lapelicula = *it;
-                cout << "Poster: " << it->getPoster() << endl;
-                cout << "Sinopsis: " << it->getSinopsis() << endl;
-            }
-        }
+
         cout << "Desea ver información de la película? (1-Sí, 0-No): ";
         int opcion;
         cin >> opcion;
@@ -311,6 +299,18 @@ void altaReserva()
         }
         else
         {
+            cout << "_____________________________________________" << endl;
+            cout << "___________OTROS DATOS DE LA PELICULA____________" << endl;
+            list<DtPelicula> peliculas = iconPelicula->ListarPeliculas();
+            for (list<DtPelicula>::iterator it = peliculas.begin(); it != peliculas.end(); ++it)
+            {
+                if (pelicula == it->getTitulo())
+                {
+                    DtPelicula lapelicula = *it;
+                    cout << "Poster: " << it->getPoster() << endl;
+                    cout << "Sinopsis: " << it->getSinopsis() << endl;
+                }
+            }
             cout << "_____________________________________________" << endl;
             cout << "_________CINES QUE TIENEN LA PELICULA________" << endl;
             list<DtCine> cines = iconCine->getCines();
@@ -349,13 +349,14 @@ void altaReserva()
                 }
                 else
                 {
-
+                    cout << "_____________________________________________" << endl;
+                    cout << "_________FUNCIONES DE LA PELICULA____________" << endl;
                     list<DtSala> salas = cine.getSalas();
-                    iconReserva->ListarFuncionesPeli(pelicula,idCine,reloj->fecha, reloj->hora);
-                    int id, asientos, pago;
+                    iconReserva->ListarFuncionesPeli(pelicula, idCine, reloj->fecha, reloj->hora);
+                    int idFuncion, asientos, pago;
                     cout << "_____Seleccionar Funcion_____" << endl;
                     cout << "Selecionar id: " << endl;
-                    cin >> id;
+                    cin >> idFuncion;
                     cout << "Selccionar cantidad de asientos: " << endl;
                     cin >> asientos;
                     cout << "Ingresar Medio de pago: (1-debito 2-Credito) " << endl;
@@ -370,8 +371,9 @@ void altaReserva()
                         cin >> opc;
                         if (opc == 1)
                         {
-                            DtDebito debito(500 * asientos, asientos, banco, 0);
-                            iconReserva->CrearReserva(idCine,idSala,0, pelicula, debito);
+                            DtDebito debito = DtDebito(500 * asientos, asientos, banco, 0);
+                            iconReserva->CrearReserva(idCine, idSala, idFuncion, pelicula, debito);
+                            cout << "SE CREO LA RESERVA EXITOSAMENTE" << endl;
                         }
                     }
                     else if (pago == 2)
@@ -392,7 +394,11 @@ void altaReserva()
                             if (opc == 1)
                             {
                                 DtCredito credito(500 * asientos, asientos, 0.0, financiera, 0);
-                                iconReserva->CrearReserva(idCine,idSala,0, pelicula, credito);
+                                iconReserva->CrearReserva(idCine, idSala, idFuncion, pelicula, credito);
+                                cout << "SE CREO LA RESERVA EXITOSAMENTE" << endl;
+                            }
+                            else
+                            {
                             }
                         }
                         else

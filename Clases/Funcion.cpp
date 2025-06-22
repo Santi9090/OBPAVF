@@ -9,6 +9,7 @@ Funcion::Funcion(int idFuncion, DtFecha fecha, DtHorario horario, Pelicula *peli
     this->fecha = fecha;
     this->horario = horario;
     this->pelicula = pelicula;
+    this->reservas=map<int, Reserva*>();
 }
 
 int Funcion::getIdFuncion() {
