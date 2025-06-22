@@ -371,7 +371,7 @@ void altaReserva()
                         cin >> opc;
                         if (opc == 1)
                         {
-                            DtDebito debito = DtDebito(500 * asientos, asientos, banco, 0);
+                            DtDebito debito = DtDebito(500 * asientos, asientos, 0, banco);
                             iconReserva->CrearReserva(idCine, idSala, idFuncion, pelicula, debito);
                             cout << "SE CREO LA RESERVA EXITOSAMENTE" << endl;
                         }
@@ -393,7 +393,9 @@ void altaReserva()
                             cin >> opc;
                             if (opc == 1)
                             {
-                                DtCredito credito(500 * asientos, asientos, 0.0, financiera, 0);
+                                cout << "antes del credito" << endl;
+                                DtCredito credito(500 * asientos, asientos,0, 0.0, financiera);
+                                cout << "antes del icon reserva" << endl;
                                 iconReserva->CrearReserva(idCine, idSala, idFuncion, pelicula, credito);
                                 cout << "SE CREO LA RESERVA EXITOSAMENTE" << endl;
                             }

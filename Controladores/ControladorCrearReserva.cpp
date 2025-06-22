@@ -29,16 +29,23 @@ void ControladorCrearReserva::CrearReserva(int idCine, int idSala, int idfuncion
 
     try
     {
+        cout << "antes del dtdebito " << endl;
         DtDebito &dtDebito = dynamic_cast<DtDebito &>(dtReserva);
-        Debito *debito = new Debito(dtDebito.getCosto(), dtDebito.getCantEntradas(), dtDebito.getBanco(), GenerarIdReserva(idfuncion));
+        cout << "despues del dtdebito " << endl;
+        Debito *debito = new Debito(dtDebito.getCosto(), dtDebito.getCantEntradas(),GenerarIdReserva(idfuncion), dtDebito.getBanco());
+        cout << "ID DE LA DEBITO: " << debito->getIdReserva();
         funcion->agregarReserva(debito);
     }
     catch (bad_cast)
     {
         try
         {
+            cout << "antes del dtcredito " << endl;
             DtCredito &dtCredito = dynamic_cast<DtCredito &>(dtReserva);
-            Credito *credito = new Credito(dtCredito.getCosto(), dtCredito.getCantEntradas(), 0.0, dtCredito.getFinanciera(), GenerarIdReserva(idfuncion));
+            cout << "despues del dtcredito " << endl;
+            Credito *credito = new Credito(dtCredito.getCosto(), dtCredito.getCantEntradas(), GenerarIdReserva(idfuncion),0.0, dtCredito.getFinanciera());
+            cout << "despues del credito " << endl;
+            cout << "ID DE LA CREDITO: " << credito->getIdReserva();
             funcion->agregarReserva(credito);
         }
         catch (bad_cast)
@@ -54,11 +61,18 @@ int ControladorCrearReserva::GenerarIdReserva(int idfuncion)
     ManejadorFuncion *mF = ManejadorFuncion::getInstancia();
     Funcion *funcion = mF->buscarFuncion(idfuncion);
     list<Reserva *> reservas = funcion->listarReservas();
-    for (list<Reserva *>::iterator it = reservas.begin(); it != reservas.end(); ++it)
+    if (reservas.empty())
     {
-        contador++;
+        return 0;
     }
-    return contador + 1;
+    else
+    {
+        for (Reserva *reserva : reservas)
+        {
+            contador++;
+        }
+        return contador + 1;
+    }
 }
 
 void ControladorCrearReserva::ListarFuncionesPeli(string pelicula, int idCine, DtFecha fecha, DtHorario hora)

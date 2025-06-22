@@ -1,6 +1,6 @@
 #include "Debito.h"
 
-Debito::Debito(float costo, int cantEntradas, string banco, int idReserva) : Reserva(costo, cantEntradas, idReserva), banco(banco) {}
+Debito::Debito(float costo, int cantEntradas, int idReserva,string banco) : Reserva(costo, cantEntradas, idReserva), banco(banco) {}
 string Debito::getBanco()
 {
     return banco;

@@ -12,7 +12,7 @@ private:
     string financiera;
 
 public:
-    DtCredito(float costo, int cantEntradas, float porcentajeDescuento, string financiera,int idReserva);
+    DtCredito(float costo, int cantEntradas, int idReserva, float porcentajeDescuento, string financiera);
     float getPorcentajeDescuento();
     string getFinanciera();
 };

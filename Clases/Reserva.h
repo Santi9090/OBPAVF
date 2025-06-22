@@ -9,7 +9,7 @@ protected:
     int cantEntradas;
 
 public:
-    Reserva(int idReserva, float costo, int cantEntradas);
+    Reserva(float costo, int cantEntradas,int idReserva);
     float getCosto();
     int getCantEntradas();
     void setCosto(float costo);

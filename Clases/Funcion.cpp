@@ -4,41 +4,50 @@
 #include "Credito.h"
 #
 
-Funcion::Funcion(int idFuncion, DtFecha fecha, DtHorario horario, Pelicula *pelicula) {
+Funcion::Funcion(int idFuncion, DtFecha fecha, DtHorario horario, Pelicula *pelicula)
+{
     this->idFuncion = idFuncion;
     this->fecha = fecha;
     this->horario = horario;
     this->pelicula = pelicula;
-    this->reservas=map<int, Reserva*>();
+    this->reservas = map<int, Reserva *>();
 }
 
-int Funcion::getIdFuncion() {
+int Funcion::getIdFuncion()
+{
     return idFuncion;
 }
 
-DtFecha Funcion::getFecha() {
+DtFecha Funcion::getFecha()
+{
     return fecha;
 }
 
-DtHorario Funcion::getHorario() {
+DtHorario Funcion::getHorario()
+{
     return horario;
 }
-Pelicula * Funcion::getPelicula(){
+Pelicula *Funcion::getPelicula()
+{
     return pelicula;
 }
 
-void Funcion::setIdFuncion(int idFuncion) {
+void Funcion::setIdFuncion(int idFuncion)
+{
     this->idFuncion = idFuncion;
 }
 
-void Funcion::setFecha(DtFecha fecha) {
+void Funcion::setFecha(DtFecha fecha)
+{
     this->fecha = fecha;
 }
 
-void Funcion::setHorario(DtHorario horario) {
+void Funcion::setHorario(DtHorario horario)
+{
     this->horario = horario;
 }
-void Funcion::setPelicula(Pelicula *pelicula) {
+void Funcion::setPelicula(Pelicula *pelicula)
+{
     this->pelicula = pelicula;
 }
 
@@ -46,30 +55,35 @@ void Funcion::agregarReserva(Reserva *reserva)
 {
     try
     {
-        Debito *preserva = dynamic_cast<Debito *>(reserva);
-        Debito *debito = new Debito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getBanco(),preserva->getIdReserva());
-        this->reservas.insert(std::pair<int, Reserva *>(debito->getIdReserva(), debito));
+        Debito &debito = dynamic_cast<Debito &>(*reserva);
+        Debito *auxdebito = new Debito(debito.getCosto(), debito.getCantEntradas(), debito.getIdReserva(), debito.getBanco());
+        this->reservas.insert(std::pair<int, Reserva *>(auxdebito->getIdReserva(), auxdebito));
+        cout << "Id de reserva: " << auxdebito->getIdReserva() << endl;
+        cout << "Reserva agregada exitosamente(Debito)" << endl;
     }
     catch (bad_cast)
     {
-        try{
-        Credito *preserva = dynamic_cast<Credito *>(reserva);
-        Credito *credito = new Credito(preserva->getCosto(), preserva->getCantEntradas(), preserva->getDescuento(), preserva->getFinanciera(),preserva->getIdReserva());
-        this->reservas.insert(std::pair<int, Reserva *>(credito->getIdReserva(), credito));
+        try
+        {
+            Credito &credito = dynamic_cast<Credito &>(*reserva);
+            Credito *auxcredito = new Credito(credito.getCosto(), credito.getCantEntradas(), credito.getIdReserva(), credito.getDescuento(), credito.getFinanciera());
+            this->reservas.insert(std::pair<int, Reserva *>(auxcredito->getIdReserva(), auxcredito));
+            cout << "Id de reserva: " << auxcredito->getIdReserva() << endl;
+            cout << "Reserva agregada exitosamente(Credito)" << endl;
         }
-        catch (bad_cast){}
+        catch (bad_cast)
+        {
+            cout << "No se pudo agregar la reserva" << endl;
+        }
     }
-   
 }
 
-
-
- list<Reserva*> Funcion::listarReservas(){
-    list<Reserva*> lstReservas;
-    for (map<int, Reserva*>::iterator it=this->reservas.begin(); it!=this->reservas.end(); ++it)
+list<Reserva *> Funcion::listarReservas()
+{
+    list<Reserva *> lstReservas;
+    for (map<int, Reserva *>::iterator it = this->reservas.begin(); it != this->reservas.end(); ++it)
         lstReservas.push_back(it->second);
     return lstReservas;
- }
-
+}
 
 Funcion::~Funcion() {}
