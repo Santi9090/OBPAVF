@@ -7,7 +7,7 @@ DtSala::DtSala(int idSala, int capacidad)
 {
     this->idSala = idSala;
     this->capacidad = capacidad;
-    this->funciones = map<int, DtFuncion>();}
+}    
 
 int DtSala::getIdSala()
 {

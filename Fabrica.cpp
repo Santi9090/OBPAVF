@@ -24,13 +24,10 @@ Fabrica::~Fabrica(){}
 IControladorCrearReserva* Fabrica::getIControladorCrearReserva() {
     return new ControladorCrearReserva();
 }
-/*
+
 IControladorVerReservaPelicula* Fabrica::getIControladorVerReservaPelicula() {
     return new ControladorVerReservaPelicula();
 }
-
-
-*/
 
 IControladorAltaFuncion* Fabrica::getIControladorAltaFuncion() {
     return new ControladorAltaFuncion();

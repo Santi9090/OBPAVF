@@ -57,13 +57,12 @@ void Cine::eliminarSala(int idSala)
     }
 }
 
-list<DtSala> Cine::getSalas()
+list<Sala*> Cine::getSalas()
 {
-    list<DtSala> listaSalas;
+    list<Sala*> listaSalas;
     for (auto &sala : salas)
     {
-        DtSala dtSala(sala.second->getId(), sala.second->getCapacidad());
-        listaSalas.push_back(dtSala);
+        listaSalas.push_back(sala.second);
     }
     return listaSalas;
 }

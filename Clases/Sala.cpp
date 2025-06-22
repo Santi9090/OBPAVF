@@ -26,7 +26,17 @@ void Sala::setCapacidad(int capacidad)
 void Sala::agregarFuncion(Funcion *funcion)
 {
     funciones.insert(std::pair<int, Funcion *>(funcion->getIdFuncion(), funcion));
-    
+}
+
+
+list<Funcion *> Sala::getFunciones()
+{
+    list<Funcion *> listaFunciones;
+    for (auto &funcion : funciones)
+    {
+        listaFunciones.push_back(funcion.second);
+    }
+    return listaFunciones;
 }
 Sala::~Sala()
 {

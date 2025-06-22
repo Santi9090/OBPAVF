@@ -28,7 +28,7 @@ public:
     Sala *buscarSala(int idSala);
     bool existeSala(int idSala);
     void eliminarSala(int idSala);
-    list<DtSala> getSalas();
+    list<Sala*> getSalas();
     list<DtPelicula> getPeliculas();
     void agregarPelicula( Pelicula * pelicula);
     ~Cine();

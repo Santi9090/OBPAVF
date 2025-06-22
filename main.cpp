@@ -16,6 +16,8 @@ IControladorPelicula *iconPelicula;
 IControladorAltaCine *iconCine;
 IControladorAltaFuncion *iconFuncion;
 IControladorCrearReserva *iconReserva;
+IControladorVerReservaPelicula *iconVerReservaPelicula;
+
 
 struct RelojSistema
 {
@@ -234,7 +236,6 @@ void AltaFuncion()
                 cout << "Ingrese la hora fin : " << endl;
                 cin >> horaFin;
                 horario = DtHorario(horaComienzo, horaFin);
-                cout << "PASO DTHORARIO/n" << endl;
                 iconFuncion->AltaFuncion(idCine, idSala, fecha, horario, titulo);
                 cout << "Función registrada exitosamente." << endl;
                 cout << "_____________________________________________" << endl;
@@ -338,6 +339,7 @@ void altaReserva()
             else
             {
                 DtCine cine = iconCine->encontrarCine(idCine);
+                mostrarSalas(idCine);
                 cout << "Ingrese el ID de la sala: (0 Para cancelar) ";
                 int idSala;
                 cin >> idSala;
@@ -349,40 +351,8 @@ void altaReserva()
                 {
 
                     list<DtSala> salas = cine.getSalas();
-                    for (list<DtSala>::iterator it = salas.begin(); it != salas.end(); ++it)
-                    {
-                        list<DtFuncion> funciones = it->getFunciones();
-                        for (list<DtFuncion>::iterator it2 = funciones.begin(); it2 != funciones.end(); ++it2)
-                        {
-                            if (pelicula == it2->getPelicula().getTitulo())
-                            {
-                                if (reloj->fecha.getAnio() < it2->getFecha().getAnio())
-                                {
-                                    cout << "Asientos Disponibles : " << it->getCapacidad();
-                                    cout << "Id de la funcion : " << it2->getIdFuncion() << endl;
-                                }
-                                else if (reloj->fecha.getAnio() == it2->getFecha().getAnio())
-                                {
-                                    if (reloj->fecha.getMes() < it2->getFecha().getMes())
-                                    {
-                                        cout << "Asientos Disponibles : " << it->getCapacidad();
-                                        cout << "Id de la funcion : " << it2->getIdFuncion() << endl;
-                                    }
-                                    else if (reloj->fecha.getMes() == it2->getFecha().getMes())
-                                    {
-                                        if (reloj->fecha.getDia() < it2->getFecha().getDia())
-                                        {
-                                            cout << "Asientos Disponibles : " << it->getCapacidad();
-                                            cout << "Id de la funcion : " << it2->getIdFuncion() << endl;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
+                    iconReserva->ListarFuncionesPeli(pelicula,idCine,reloj->fecha, reloj->hora);
                     int id, asientos, pago;
-
                     cout << "_____Seleccionar Funcion_____" << endl;
                     cout << "Selecionar id: " << endl;
                     cin >> id;
@@ -401,7 +371,7 @@ void altaReserva()
                         if (opc == 1)
                         {
                             DtDebito debito(500 * asientos, asientos, banco, 0);
-                            iconReserva->CrearReserva(id, pelicula, debito);
+                            iconReserva->CrearReserva(idCine,idSala,0, pelicula, debito);
                         }
                     }
                     else if (pago == 2)
@@ -422,7 +392,7 @@ void altaReserva()
                             if (opc == 1)
                             {
                                 DtCredito credito(500 * asientos, asientos, 0.0, financiera, 0);
-                                iconReserva->CrearReserva(id, pelicula, credito);
+                                iconReserva->CrearReserva(idCine,idSala,0, pelicula, credito);
                             }
                         }
                         else
@@ -447,7 +417,17 @@ void cambiarHoraSistema()
     reloj->fecha = fecha;
     reloj->hora = fhora;
 }
-
+void VerReservaDePelicula()
+{
+    string titulo;
+    cout << "_____________________________________________" << endl;
+    cout << "___________VER RESERVA DE PELICULA____________" << endl;
+    listarPeliculas();
+    cout << "Ingrese el título de la película: ";
+    cin >> titulo;
+    iconVerReservaPelicula->VerReservaDePelicula(titulo);
+    cout << "_____________________________________________" << endl;
+}
 void consultarHoraSistema()
 {
 
@@ -464,6 +444,7 @@ void menu2()
     cout << "2- Registrar Cine" << endl;
     cout << "3- Registrar Funcion" << endl;
     cout << "4- Registrar Reserva" << endl;
+    cout << "5- Ver Reservas de pelicula" << endl;
     cout << "6- Listar Funciones" << endl;
     cout << "7- Listar Películas" << endl;
     cout << "8- Listar Cines" << endl;
@@ -483,8 +464,9 @@ int main()
     iconCine = fabrica->getIControladorAltaCine();
     iconFuncion = fabrica->getIControladorAltaFuncion();
     iconReserva = fabrica->getIControladorCrearReserva();
+    iconVerReservaPelicula = fabrica->getIControladorVerReservaPelicula();
     DtFecha fecha(1, 1, 1);
-    DtHorario fhora(0, 0);
+    DtHorario fhora("0", "0");
     reloj->fecha = fecha;
     reloj->hora = fhora;
     int opcion;
@@ -525,6 +507,11 @@ int main()
             break;
         case 4:
             altaReserva();
+            break;
+        case 5:
+            VerReservaDePelicula();
+            break;
+            cout << "Funcionalidad no implementada." << endl;
             break;
         case 6:
             mostrarFunciones();

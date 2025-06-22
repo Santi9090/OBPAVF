@@ -8,15 +8,17 @@
 #include <list>
 using namespace std;
 
-class DtSala {
+class DtSala
+{
 private:
     int idSala;
     int capacidad;
-    map <int, DtFuncion> funciones;
+    map<int, DtFuncion> funciones;
+
 public:
     DtSala(int idSala, int capacidad);
-    int getIdSala();
     int getCapacidad();
+    int getIdSala();
     list<DtFuncion> getFunciones();
     ~DtSala();
 };

@@ -23,11 +23,19 @@ list<DtCine> ControladorAltaCine::getCines()
 {
     ManejadorCine *Mc = ManejadorCine::getInstancia();
     list<DtCine> listaCines;
+    list<DtSala> listaSalas;
     for (auto &cine : Mc->getCines())
     {
-        DtCine dtCine(cine->getIdCine(), cine->getDireccion(), cine->getSalas(), cine->getPeliculas());
+        list<Sala *> salas = cine->getSalas();
+        for (auto &sala : salas)
+        {
+            DtSala dtSala(sala->getId(), sala->getCapacidad());
+            listaSalas.push_back(dtSala);
+        }
+        DtCine dtCine(cine->getIdCine(), cine->getDireccion(), listaSalas, cine->getPeliculas());
         listaCines.push_back(dtCine);
     }
+
     return listaCines;
 }
 
@@ -41,17 +49,30 @@ list<DtSala> ControladorAltaCine::listarSalas(int idCine)
 {
     ManejadorCine *Mc = ManejadorCine::getInstancia();
     Cine *cine = Mc->buscarCine(idCine);
-    if (cine == NULL)
+    list<DtSala> listaSalas;
+
+    for (auto &sala : cine->getSalas())
     {
-        return list<DtSala>();
+        DtSala dtSala(sala->getId(), sala->getCapacidad());
+        listaSalas.push_back(dtSala);
     }
-    return cine->getSalas();
+    return listaSalas;
 }
 
 DtCine ControladorAltaCine::encontrarCine(int idCine)
 {
     ManejadorCine *Mc = ManejadorCine::getInstancia();
     Cine *cine = Mc->buscarCine(idCine);
-    DtCine dtCine(cine->getIdCine(), cine->getDireccion(), cine->getSalas(), cine->getPeliculas());
+    list<DtSala> listaSalas;
+    for (auto &cine : Mc->getCines())
+    {
+        list<Sala *> salas = cine->getSalas();
+        for (auto &sala : salas)
+        {
+            DtSala dtSala(sala->getId(), sala->getCapacidad());
+            listaSalas.push_back(dtSala);
+        }
+    }
+    DtCine dtCine(cine->getIdCine(), cine->getDireccion(), listaSalas, cine->getPeliculas());
     return dtCine;
 }

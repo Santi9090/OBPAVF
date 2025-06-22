@@ -30,6 +30,9 @@ OBJS = Fabrica.o \
 	DataTypes/DtCine.o \
 	DataTypes/DtFuncion.o \
 	DataTypes/DtSala.o \
+	DataTypes/DtCredito.o \
+	DataTypes/DtReserva.o \
+	DataTypes/DtDebito.o \
 	main.o
 
 main: $(OBJS)
