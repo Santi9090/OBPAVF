@@ -14,7 +14,6 @@ public:
     virtual bool ExistePelicula(string titulo) = 0;
     virtual DtPelicula BuscarPelicula(string titulo) = 0;
     virtual void EliminarPelicula(string titulo) = 0;
-    virtual void EliminarPeliculaCopilot(string titulo) = 0;
 };
 
 #endif

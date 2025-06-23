@@ -394,15 +394,8 @@ void altaReserva()
                             cin >> opc;
                             if (opc == 1)
                             {
-<<<<<<< HEAD
                                 DtCredito credito(500 * asientos, asientos, 0, 0.0, financiera);
-=======
-                                cout << "antes del credito" << endl;
-                                DtCredito credito(500 * asientos, asientos, 0, 0.0, financiera);
-                                cout << "antes del icon reserva" << endl;
->>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
                                 iconReserva->CrearReserva(idCine, idSala, idFuncion, pelicula, credito);
-                                cout << "SE CREO LA RESERVA EXITOSAMENTE" << endl;
                             }
                             else
                             {
@@ -450,7 +443,6 @@ void consultarHoraSistema()
          << reloj->hora.getHoraComienzo() << ":" << reloj->hora.getHoraFin() << endl;
     cout << "____________________________" << endl;
 }
-<<<<<<< HEAD
 
 void EliminarPelicula()
 {
@@ -470,7 +462,6 @@ void EliminarPelicula()
         cout << "La película no existe." << endl;
     }
 }
-=======
 void mostrarComentarios(string titulo)
 {
 
@@ -498,7 +489,7 @@ void puntuarPelicula()
     {
         cout << "Ingresar Puntaje: " << endl;
         cin >> opc;
-        iconPuntajeComentario->agregarPuntaje(opc,titulo);
+        iconPuntajeComentario->agregarPuntaje(opc, titulo);
     }
     else
     {
@@ -534,7 +525,6 @@ void comentarPelicula()
     }
 }
 
->>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
 void menu2()
 {
     cout << "_____________________________________________" << endl;
@@ -550,17 +540,17 @@ void menu2()
     cout << "9- Registrar Usuario" << endl;
     cout << "10- Cambiar hora sistema " << endl;
     cout << "11- Ver Hora sistema" << endl;
-<<<<<<< HEAD
     cout << "12- Eliminar Película" << endl;
-=======
-    cout << "12- Puntuar pelicula" << endl;
-    cout << "13- Comentar pelicula" << endl;
-    cout << "14- Ver comentario y puntaje de pelicula" << endl;
->>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
+    cout << "13- Puntuar pelicula" << endl;
+    cout << "14- Comentar pelicula" << endl;
+    cout << "15- Ver comentario y puntaje de pelicula" << endl;
+    cout << "16- Ver Informacion de pelicula" << endl;
+
     cout << "0- Cerrar Sesión" << endl;
     cout << "_____________________________________________" << endl;
 }
-void VerComentarioPuntajePelicula(){    
+void VerComentarioPuntajePelicula()
+{
     cout << "_____________________________________________" << endl;
     cout << "___________VER COMENTARIO Y PUNTAJE DE PELICULA____________" << endl;
     string titulo;
@@ -572,8 +562,86 @@ void VerComentarioPuntajePelicula(){
     cout << "Puntajes" << endl;
     mostrarPuntajes(titulo);
 }
-VerInformacionPelicula(){
-    
+void VerInformacionPelicula()
+{
+    int salida = 0;
+    do
+    {
+        string pelicula;
+        cout << "_____________________________________________" << endl;
+        cout << "___________LISTA DE PELICULAS____________" << endl;
+        list<DtPelicula> peliculas = iconPelicula->ListarPeliculas();
+        for (list<DtPelicula>::iterator it = peliculas.begin(); it != peliculas.end(); ++it)
+        {
+            cout << "Título: " << it->getTitulo() << endl;
+        }
+        cout << "Ingrese el título de la película: (0 para cancelar) ";
+        cin >> pelicula;
+        if (pelicula == "0")
+        {
+        }
+        else
+        {
+
+            cout << "Desea ver información de la película? (1-Sí, 0-No): ";
+            int opcion;
+            cin >> opcion;
+            if (opcion == 0)
+            {
+            }
+            else
+            {
+                cout << "_____________________________________________" << endl;
+                cout << "___________OTROS DATOS DE LA PELICULA____________" << endl;
+                list<DtPelicula> peliculas = iconPelicula->ListarPeliculas();
+                for (list<DtPelicula>::iterator it = peliculas.begin(); it != peliculas.end(); ++it)
+                {
+                    if (pelicula == it->getTitulo())
+                    {
+                        DtPelicula lapelicula = *it;
+                        cout << "Poster: " << it->getPoster() << endl;
+                        cout << "Sinopsis: " << it->getSinopsis() << endl;
+                    }
+                }
+                cout << "_____________________________________________" << endl;
+                cout << "_________CINES QUE TIENEN LA PELICULA________" << endl;
+                list<DtCine> cines = iconCine->getCines();
+                for (list<DtCine>::iterator it = cines.begin(); it != cines.end(); ++it)
+                {
+
+                    list<DtPelicula> peliculas = it->getPeliculas();
+                    for (list<DtPelicula>::iterator it2 = peliculas.begin(); it2 != peliculas.end(); ++it2)
+                    {
+                        if (it2->getTitulo() == pelicula)
+                        {
+
+                            cout << "Cine: " << it->getDireccion().getCalle() << endl;
+                            cout << "Número: " << it->getDireccion().getNumero() << endl;
+                            cout << "ID: " << it->getIdCine() << endl;
+                        }
+                    }
+                }
+                cout << "Ingrese el ID del cine: (0 Para cancelar) ";
+                int idCine;
+                cin >> idCine;
+                if (idCine == 0)
+                {
+                }
+                else
+                {
+                    DtCine cine = iconCine->encontrarCine(idCine);
+
+                    cout << "_____________________________________________" << endl;
+                    cout << "_________FUNCIONES DE LA PELICULA____________" << endl;
+                    list<DtSala> salas = cine.getSalas();
+                    iconReserva->ListarFuncionesPeli(pelicula, idCine, reloj->fecha, reloj->hora);
+                }
+            }
+        }
+        cout << "_____________________________________________" << endl;
+        cout << "Desea ver otra información de una pelicula? (1-Sí, 0-No): ";
+        cin >> salida;
+    } while (salida != 0);
 }
 void lobby()
 {
@@ -639,22 +707,20 @@ void lobby()
             consultarHoraSistema();
             break;
         case 12:
-<<<<<<< HEAD
             EliminarPelicula();
             break;
-=======
+        case 13:
             puntuarPelicula();
             break;
-        case 13:
+        case 14:
             comentarPelicula();
             break;
-        case 14:
+        case 15:
             VerComentarioPuntajePelicula();
             break;
-        case 15:
+        case 16:
             VerInformacionPelicula();
-        break;
->>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
+            break;
         case 0:
             iconSesion->cerrarSesion();
             break;
@@ -664,7 +730,6 @@ void lobby()
         }
     } while (iconSesion->existeSesion());
 }
-/*
 void cargarDatos()
 {
     cout << "Cargando datos..." << endl;
@@ -674,29 +739,23 @@ void cargarDatos()
     DtDireccion direccion1("Av. Principal", 123);
     DtDireccion direccion2("Calle Secundaria", 456);
     map<int, DtSala> salas1;
-    map<int, DtSala> salas2;
     salas1[1] = DtSala(1, 100);
     salas1[2] = DtSala(2, 80);
+    map<int, DtSala> salas2;
+    salas2[1] = DtSala(1, 120);
     iconCine->AltaCine(direccion1, salas1);
     iconCine->AltaCine(direccion2, salas2);
-
     DtFecha fecha1(23, 6, 2025);
     DtHorario horario1("20:00", "22:00");
     DtHorario horario2("18:00", "20:00");
-
     iconFuncion->AltaFuncion(1, 1, fecha1, horario1, "Pelicula 1");
     iconFuncion->AltaFuncion(1, 2, fecha1, horario2, "Pelicula 2");
     iconFuncion->AltaFuncion(2, 1, fecha1, horario1, "Pelicula 3");
-    // Reservas de ejemplo
     DtDebito debito1(1000, 2, 0, "BancoEjemplo");
     DtCredito credito1(1500, 3, 0, 0.0, "FinancieraEjemplo");
-
-    // Reserva para función 1 (cine 1, sala 1, funcion 1, Pelicula 1)
     iconReserva->CrearReserva(1, 1, 1, "Pelicula 1", debito1);
-    // Reserva para función 2 (cine 1, sala 2, funcion 2, Pelicula 2)
     iconReserva->CrearReserva(1, 2, 2, "Pelicula 2", credito1);
 }
-    */
 int main()
 {
 

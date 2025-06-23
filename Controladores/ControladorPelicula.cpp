@@ -63,6 +63,9 @@ void ControladorPelicula::EliminarPelicula(string titulo)
 		}
 	}
 
+
+
+
 	ManejadorPelicula *mP = ManejadorPelicula::getInstancia();
 	if (mP->existePelicula(titulo))
 	{
@@ -72,4 +75,5 @@ void ControladorPelicula::EliminarPelicula(string titulo)
 	{
 		throw runtime_error("La película no existe.");
 	}
+
 }

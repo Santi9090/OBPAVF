@@ -32,24 +32,25 @@ void ControladorVerReservaPelicula::VerReservaDePelicula(string titulo)
             cout << "Tamaño de reservas " << reservas.size() << endl;
             for (auto &reserva : reservas)
             {
-                cout << "Entro al for pa \n";
                 try
                 {
                     Debito &debito = dynamic_cast<Debito &>(*reserva);
+                    cout << "___________RESERVA___________" << endl;
+                    cout << "Forma de pago : Debito" << endl;
                     cout << "Reserva ID: " << debito.getIdReserva() << endl;
                     cout << " Costo: " << debito.getCosto() << endl;
                     cout << "Cantidad de Entradas: " << debito.getCantEntradas() << endl;
-                    cout << "Forma de pago : Debito" << endl;
                 }
                 catch (bad_cast &)
                 {
                     try
                     {
                         Credito &credito = dynamic_cast<Credito &>(*reserva);
+                        cout << "___________RESERVA___________" << endl;
+                        cout << "Forma de pago : Credito" << endl;
                         cout << "Reserva ID: " << credito.getIdReserva() << endl;
                         cout << " Costo: " << credito.getCosto() << endl;
                         cout << "Cantidad de Entradas: " << credito.getCantEntradas() << endl;
-                        cout << "Forma de pago : Credito" << endl;
                     }
                     catch (bad_cast &)
                     {

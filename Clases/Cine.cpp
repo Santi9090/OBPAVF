@@ -87,7 +87,7 @@ void Cine::eliminarPelicula(Pelicula *pelicula)
     auto it = peliculas.find(pelicula->getTitulo());
     if (it != peliculas.end())
     {   
-        //Santi puto
+        
         peliculas.erase(it); // Eliminar la película del mapa
     }
 }

@@ -29,23 +29,16 @@ void ControladorCrearReserva::CrearReserva(int idCine, int idSala, int idfuncion
 
     try
     {
-        cout << "antes del dtdebito " << endl;
         DtDebito &dtDebito = dynamic_cast<DtDebito &>(dtReserva);
-        cout << "despues del dtdebito " << endl;
         Debito *debito = new Debito(dtDebito.getCosto(), dtDebito.getCantEntradas(),GenerarIdReserva(idfuncion), dtDebito.getBanco());
-        cout << "ID DE LA DEBITO: " << debito->getIdReserva();
         funcion->agregarReserva(debito);
     }
     catch (bad_cast)
     {
         try
         {
-            cout << "antes del dtcredito " << endl;
             DtCredito &dtCredito = dynamic_cast<DtCredito &>(dtReserva);
-            cout << "despues del dtcredito " << endl;
             Credito *credito = new Credito(dtCredito.getCosto(), dtCredito.getCantEntradas(), GenerarIdReserva(idfuncion),0.0, dtCredito.getFinanciera());
-            cout << "despues del credito " << endl;
-            cout << "ID DE LA CREDITO: " << credito->getIdReserva();
             funcion->agregarReserva(credito);
         }
         catch (bad_cast)
