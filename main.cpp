@@ -27,7 +27,7 @@ RelojSistema *reloj = new (RelojSistema);
 void menu()
 {
     cout << "_____________________________________________" << endl;
-    cout << "_____________SISTEMA DEL MOMO_____________" << endl;
+    cout << "_____________BIENVENIDO AL CINE DEL MOMO_____________" << endl;
     cout << "1- iniciarSesion: " << endl;
     cout << "2- RegistrarUsuario: " << endl;
     cout << "_____________________________________________" << endl;
@@ -111,7 +111,6 @@ void registrarPelicula()
 
     } while (continua != 0);
 }
-
 void altaCine()
 {
     int opcion, numero;
@@ -366,6 +365,7 @@ void altaReserva()
                         string banco;
                         cout << "Ingresar Nombre del banco : " << endl;
                         cin >> banco;
+                        cout << "El precio es de : " << 500 * asientos << endl;
                         cout << "Desea crear la reserva (1-Si 0-No)." << endl;
                         int opc;
                         cin >> opc;
@@ -393,9 +393,7 @@ void altaReserva()
                             cin >> opc;
                             if (opc == 1)
                             {
-                                cout << "antes del credito" << endl;
-                                DtCredito credito(500 * asientos, asientos,0, 0.0, financiera);
-                                cout << "antes del icon reserva" << endl;
+                                DtCredito credito(500 * asientos, asientos, 0, 0.0, financiera);
                                 iconReserva->CrearReserva(idCine, idSala, idFuncion, pelicula, credito);
                                 cout << "SE CREO LA RESERVA EXITOSAMENTE" << endl;
                             }
@@ -437,12 +435,32 @@ void VerReservaDePelicula()
     cout << "_____________________________________________" << endl;
 }
 void consultarHoraSistema()
+
 {
 
     cout << "________HORA SISTEMA________" << endl;
     cout << reloj->fecha.getAnio() << "/" << reloj->fecha.getMes() << "/" << reloj->fecha.getDia() << " "
          << reloj->hora.getHoraComienzo() << ":" << reloj->hora.getHoraFin() << endl;
     cout << "____________________________" << endl;
+}
+
+void EliminarPelicula()
+{
+    string titulo;
+    cout << "_____________________________________________" << endl;
+    cout << "___________ELIMINAR PELICULA____________" << endl;
+    listarPeliculas();
+    cout << "Ingrese el título de la película a eliminar: ";
+    cin >> titulo;
+    if (iconPelicula->ExistePelicula(titulo))
+    {
+        iconPelicula->EliminarPelicula(titulo);
+        cout << "Película eliminada exitosamente." << endl;
+    }
+    else
+    {
+        cout << "La película no existe." << endl;
+    }
 }
 void menu2()
 {
@@ -459,6 +477,7 @@ void menu2()
     cout << "9- Registrar Usuario" << endl;
     cout << "10- Cambiar hora sistema " << endl;
     cout << "11- Ver Hora sistema" << endl;
+    cout << "12- Eliminar Película" << endl;
     cout << "0- Cerrar Sesión" << endl;
     cout << "_____________________________________________" << endl;
 }
@@ -519,8 +538,6 @@ int main()
         case 5:
             VerReservaDePelicula();
             break;
-            cout << "Funcionalidad no implementada." << endl;
-            break;
         case 6:
             mostrarFunciones();
             break;
@@ -538,6 +555,9 @@ int main()
             break;
         case 11:
             consultarHoraSistema();
+            break;
+        case 12:
+            EliminarPelicula();
             break;
         case 0:
             iconSesion->cerrarSesion();

@@ -31,6 +31,7 @@ public:
     void setHorario(DtHorario horario);
     void setPelicula(Pelicula *pelicula);
     void agregarReserva(Reserva *reserva);
+    void eliminarReserva(int idReserva);
     list<Reserva *> listarReservas();
 
     ~Funcion();

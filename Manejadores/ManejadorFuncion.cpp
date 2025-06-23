@@ -3,7 +3,6 @@
 #include <list>
 #include "../DataTypes/DtFuncion.h"
 
-
 using namespace std;
 
 ManejadorFuncion *ManejadorFuncion::instancia = nullptr;
@@ -28,12 +27,6 @@ Funcion *ManejadorFuncion::buscarFuncion(int idFuncion)
     return it->second;
 }
 
-void ManejadorFuncion::eliminarFuncion(int idFuncion)
-{
-    map<int, Funcion *>::iterator it = this->funciones.find(idFuncion);
-    this->funciones.erase(it);
-}
-
 bool ManejadorFuncion::existeFuncion(int idFuncion)
 {
     map<int, Funcion *>::iterator it = this->funciones.find(idFuncion);
@@ -50,14 +43,23 @@ int ManejadorFuncion::generarIdFuncion()
     return contador + 1;
 }
 
-list<Funcion*> ManejadorFuncion::getFunciones()
+list<Funcion *> ManejadorFuncion::getFunciones()
 {
-   list<Funcion*> lstFunciones;
+    list<Funcion *> lstFunciones;
     for (map<int, Funcion *>::iterator it = this->funciones.begin(); it != funciones.end(); ++it)
     {
         lstFunciones.push_back(it->second);
     }
     return lstFunciones;
+}
+void ManejadorFuncion::eliminarFuncion(int idFuncion)
+{
+    map<int, Funcion *>::iterator it = this->funciones.find(idFuncion);
+    if (it != this->funciones.end())
+    {
+        delete it->second;         // Liberar memoria de la función
+        this->funciones.erase(it); // Eliminar la función del mapa
+    }
 }
 
 ManejadorFuncion::~ManejadorFuncion()

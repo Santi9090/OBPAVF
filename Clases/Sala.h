@@ -20,6 +20,7 @@ public:
     void setId(int id);
     void setCapacidad(int capacidad);
     void agregarFuncion(Funcion* funcion);
+    void eliminarFuncion(int idFuncion);
     list<Funcion*> getFunciones();
 
 

@@ -15,6 +15,7 @@ public:
     list<DtPelicula> ListarPeliculas();
     bool ExistePelicula(string titulo);
     DtPelicula BuscarPelicula(string titulo);
+    void EliminarPelicula(string titulo);
 };
 
 #endif

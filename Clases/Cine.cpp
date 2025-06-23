@@ -81,6 +81,28 @@ void Cine::agregarPelicula(Pelicula *pelicula)
 {
     peliculas.insert(std::pair<string, Pelicula *>(pelicula->getTitulo(), pelicula));
 }
+
+void Cine::eliminarPelicula(Pelicula *pelicula)
+{
+    auto it = peliculas.find(pelicula->getTitulo());
+    if (it != peliculas.end())
+    {   
+        //Santi puto
+        peliculas.erase(it); // Eliminar la película del mapa
+    }
+}
+bool Cine::existePelicula(string titulo)
+{
+    return peliculas.find(titulo) != peliculas.end();
+}
+
+Pelicula* Cine::buscarPelicula(string titulo)
+{
+    auto it = peliculas.find(titulo);
+    if (it != peliculas.end())
+        return it->second;
+    return nullptr;
+}
 Cine::~Cine()
 {
 }

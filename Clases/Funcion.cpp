@@ -85,5 +85,17 @@ list<Reserva *> Funcion::listarReservas()
         lstReservas.push_back(it->second);
     return lstReservas;
 }
+void Funcion::eliminarReserva(int idReserva)
+{
+    auto it = reservas.find(idReserva);
+    if (it != reservas.end()) {
+        delete it->second; // Libera la memoria de la reserva
+        reservas.erase(it);
+    }
+    else
+    {
+        cout << "No se encontró la reserva con ID: " << idReserva << endl;
+    }
+}
 
 Funcion::~Funcion() {}

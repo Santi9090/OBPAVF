@@ -38,6 +38,15 @@ list<Funcion *> Sala::getFunciones()
     }
     return listaFunciones;
 }
+
+void Sala::eliminarFuncion(int idFuncion)
+{
+    auto it = funciones.find(idFuncion);
+    if (it != funciones.end()) {
+        funciones.erase(it);
+    }
+}
+
 Sala::~Sala()
 {
     // Liberar memoria de funciones si corresponde

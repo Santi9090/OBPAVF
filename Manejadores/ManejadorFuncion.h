@@ -17,9 +17,9 @@ public:
     static ManejadorFuncion *getInstancia();
     void agregarFuncion( Funcion *funcion);
     Funcion *buscarFuncion(int idFuncion);
-    void eliminarFuncion(int idFuncion);
     int generarIdFuncion();
     bool existeFuncion(int idFuncion);
+    void eliminarFuncion(int idFuncion);
 
     list<Funcion*> getFunciones();
     ~ManejadorFuncion();

@@ -30,7 +30,10 @@ public:
     void eliminarSala(int idSala);
     list<Sala*> getSalas();
     list<DtPelicula> getPeliculas();
+    void eliminarPelicula(Pelicula* pelicula);
     void agregarPelicula( Pelicula * pelicula);
+    bool existePelicula(string titulo);
+    Pelicula* buscarPelicula(string titulo);
     ~Cine();
 
 };
