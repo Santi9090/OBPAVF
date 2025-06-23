@@ -17,6 +17,7 @@ IControladorAltaCine *iconCine;
 IControladorAltaFuncion *iconFuncion;
 IControladorCrearReserva *iconReserva;
 IControladorVerReservaPelicula *iconVerReservaPelicula;
+IControladorPuntajeComentario *iconPuntajeComentario;
 
 struct RelojSistema
 {
@@ -393,7 +394,13 @@ void altaReserva()
                             cin >> opc;
                             if (opc == 1)
                             {
+<<<<<<< HEAD
                                 DtCredito credito(500 * asientos, asientos, 0, 0.0, financiera);
+=======
+                                cout << "antes del credito" << endl;
+                                DtCredito credito(500 * asientos, asientos, 0, 0.0, financiera);
+                                cout << "antes del icon reserva" << endl;
+>>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
                                 iconReserva->CrearReserva(idCine, idSala, idFuncion, pelicula, credito);
                                 cout << "SE CREO LA RESERVA EXITOSAMENTE" << endl;
                             }
@@ -443,6 +450,7 @@ void consultarHoraSistema()
          << reloj->hora.getHoraComienzo() << ":" << reloj->hora.getHoraFin() << endl;
     cout << "____________________________" << endl;
 }
+<<<<<<< HEAD
 
 void EliminarPelicula()
 {
@@ -462,6 +470,71 @@ void EliminarPelicula()
         cout << "La película no existe." << endl;
     }
 }
+=======
+void mostrarComentarios(string titulo)
+{
+
+    iconPuntajeComentario->listarComentarios(titulo);
+}
+void mostrarPuntajes(string titulo)
+{
+
+    iconPuntajeComentario->listarPuntajes(titulo);
+}
+void puntuarPelicula()
+{
+    int opc;
+    string titulo;
+    cout << "_____________________________________________" << endl;
+    cout << "___________PUNTUAR PELICULA____________" << endl;
+    listarPeliculas();
+    cout << "Ingrese el título de la pelicula: ";
+    cin >> titulo;
+    iconPuntajeComentario->listarPuntaje(titulo);
+
+    cout << "Desea puntuar la pelicula (1-Si 0-No)" << endl;
+    cin >> opc;
+    if (opc == 1)
+    {
+        cout << "Ingresar Puntaje: " << endl;
+        cin >> opc;
+        iconPuntajeComentario->agregarPuntaje(opc,titulo);
+    }
+    else
+    {
+    }
+}
+void comentarPelicula()
+{
+    int opc;
+    string titulo, comentario;
+    cout << "_____________________________________________" << endl;
+    cout << "___________COMENTAR PELICULA____________" << endl;
+    listarPeliculas();
+    cout << "Ingrese el título de la pelicula: ";
+    cin >> titulo;
+    mostrarComentarios(titulo);
+    cout << "Desea comentar la pelicula (1-Si 0-Responde comentario)" << endl;
+    cin >> opc;
+    if (opc == 0)
+    {
+        cout << "Elegir Comentario (ID): " << endl;
+        cin >> opc;
+        cout << "Ingresar Comentario: " << endl;
+        cin.ignore();
+        getline(cin, comentario);
+        iconPuntajeComentario->agregarRespuesta(opc, comentario, titulo);
+    }
+    else
+    {
+        cout << "Ingresar Comentario: " << endl;
+        cin.ignore();
+        getline(cin, comentario);
+        iconPuntajeComentario->agregarComentario(comentario, titulo);
+    }
+}
+
+>>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
 void menu2()
 {
     cout << "_____________________________________________" << endl;
@@ -477,25 +550,33 @@ void menu2()
     cout << "9- Registrar Usuario" << endl;
     cout << "10- Cambiar hora sistema " << endl;
     cout << "11- Ver Hora sistema" << endl;
+<<<<<<< HEAD
     cout << "12- Eliminar Película" << endl;
+=======
+    cout << "12- Puntuar pelicula" << endl;
+    cout << "13- Comentar pelicula" << endl;
+    cout << "14- Ver comentario y puntaje de pelicula" << endl;
+>>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
     cout << "0- Cerrar Sesión" << endl;
     cout << "_____________________________________________" << endl;
 }
-
-int main()
+void VerComentarioPuntajePelicula(){    
+    cout << "_____________________________________________" << endl;
+    cout << "___________VER COMENTARIO Y PUNTAJE DE PELICULA____________" << endl;
+    string titulo;
+    listarPeliculas();
+    cout << "Ingrese el título de la pelicula: ";
+    cin >> titulo;
+    cout << "Comentarios" << endl;
+    mostrarComentarios(titulo);
+    cout << "Puntajes" << endl;
+    mostrarPuntajes(titulo);
+}
+VerInformacionPelicula(){
+    
+}
+void lobby()
 {
-
-    fabrica = Fabrica::getInstancia();
-    iconSesion = fabrica->getIControladorSesion();
-    iconPelicula = fabrica->getIControladorPelicula();
-    iconCine = fabrica->getIControladorAltaCine();
-    iconFuncion = fabrica->getIControladorAltaFuncion();
-    iconReserva = fabrica->getIControladorCrearReserva();
-    iconVerReservaPelicula = fabrica->getIControladorVerReservaPelicula();
-    DtFecha fecha(1, 1, 1);
-    DtHorario fhora("0", "0");
-    reloj->fecha = fecha;
-    reloj->hora = fhora;
     int opcion;
     do
     {
@@ -515,6 +596,7 @@ int main()
             cout << "Opción no válida. Intente de nuevo." << endl;
             break;
         }
+        int opcion;
     } while (!iconSesion->existeSesion());
     do
     {
@@ -557,8 +639,22 @@ int main()
             consultarHoraSistema();
             break;
         case 12:
+<<<<<<< HEAD
             EliminarPelicula();
             break;
+=======
+            puntuarPelicula();
+            break;
+        case 13:
+            comentarPelicula();
+            break;
+        case 14:
+            VerComentarioPuntajePelicula();
+            break;
+        case 15:
+            VerInformacionPelicula();
+        break;
+>>>>>>> 8aad9e0 (Todos los opcionales menos, ver informacion peli)
         case 0:
             iconSesion->cerrarSesion();
             break;
@@ -567,6 +663,59 @@ int main()
             break;
         }
     } while (iconSesion->existeSesion());
+}
+/*
+void cargarDatos()
+{
+    cout << "Cargando datos..." << endl;
+    iconPelicula->RegistrarPelicula("Pelicula 1", "Sinopsis de Pelicula 1", "urlFoto1");
+    iconPelicula->RegistrarPelicula("Pelicula 2", "Sinopsis de Pelicula 2", "urlFoto2");
+    iconPelicula->RegistrarPelicula("Pelicula 3", "Sinopsis de Pelicula 3", "urlFoto3");
+    DtDireccion direccion1("Av. Principal", 123);
+    DtDireccion direccion2("Calle Secundaria", 456);
+    map<int, DtSala> salas1;
+    map<int, DtSala> salas2;
+    salas1[1] = DtSala(1, 100);
+    salas1[2] = DtSala(2, 80);
+    iconCine->AltaCine(direccion1, salas1);
+    iconCine->AltaCine(direccion2, salas2);
+
+    DtFecha fecha1(23, 6, 2025);
+    DtHorario horario1("20:00", "22:00");
+    DtHorario horario2("18:00", "20:00");
+
+    iconFuncion->AltaFuncion(1, 1, fecha1, horario1, "Pelicula 1");
+    iconFuncion->AltaFuncion(1, 2, fecha1, horario2, "Pelicula 2");
+    iconFuncion->AltaFuncion(2, 1, fecha1, horario1, "Pelicula 3");
+    // Reservas de ejemplo
+    DtDebito debito1(1000, 2, 0, "BancoEjemplo");
+    DtCredito credito1(1500, 3, 0, 0.0, "FinancieraEjemplo");
+
+    // Reserva para función 1 (cine 1, sala 1, funcion 1, Pelicula 1)
+    iconReserva->CrearReserva(1, 1, 1, "Pelicula 1", debito1);
+    // Reserva para función 2 (cine 1, sala 2, funcion 2, Pelicula 2)
+    iconReserva->CrearReserva(1, 2, 2, "Pelicula 2", credito1);
+}
+    */
+int main()
+{
+
+    fabrica = Fabrica::getInstancia();
+    iconSesion = fabrica->getIControladorSesion();
+    iconPelicula = fabrica->getIControladorPelicula();
+    iconCine = fabrica->getIControladorAltaCine();
+    iconFuncion = fabrica->getIControladorAltaFuncion();
+    iconReserva = fabrica->getIControladorCrearReserva();
+    iconVerReservaPelicula = fabrica->getIControladorVerReservaPelicula();
+    iconPuntajeComentario = fabrica->getIControladorPuntajeComentario();
+    DtFecha fecha(1, 1, 1);
+    DtHorario fhora("0", "0");
+    reloj->fecha = fecha;
+    reloj->hora = fhora;
+    do
+    {
+        lobby();
+    } while (true);
 
     cout << "Gracias por usar el sistema del momo." << endl;
 }

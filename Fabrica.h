@@ -6,6 +6,7 @@
 #include "Interfaces/IControladorCrearReserva.h"
 #include "Interfaces/IControladorAltaFuncion.h"
 #include "Interfaces/IControladorPelicula.h"
+#include "Interfaces/IControladorPuntajeComentario.h"
 
 #include <iostream>
 class Fabrica
@@ -22,6 +23,7 @@ public:
     IControladorPelicula *getIControladorPelicula();
     IControladorAltaCine* getIControladorAltaCine();
     IControladorAltaFuncion* getIControladorAltaFuncion();
+    IControladorPuntajeComentario * getIControladorPuntajeComentario();
     ~Fabrica();
 };
 #endif

@@ -7,6 +7,7 @@
 #include "Controladores/ControladorAltaFuncion.h"
 #include "Controladores/ControladorSesion.h"
 #include "Controladores/ControladorPelicula.h"
+#include "Controladores/ControladorPuntajeComentario.h"
 Fabrica* Fabrica::instancia = NULL;
 
 Fabrica::Fabrica(){}
@@ -43,4 +44,8 @@ IControladorPelicula* Fabrica::getIControladorPelicula() {
 
 IControladorAltaCine* Fabrica::getIControladorAltaCine() {
     return new ControladorAltaCine();
+}
+
+IControladorPuntajeComentario* Fabrica::getIControladorPuntajeComentario(){
+    return new ControladorPuntajeComentario();
 }

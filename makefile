@@ -8,6 +8,7 @@ OBJS = Fabrica.o \
 	Controladores/ControladorAltaFuncion.o \
 	Controladores/ControladorCrearReserva.o \
 	Controladores/ControladorVerReservaPelicula.o \
+	Controladores/ControladorPuntajeComentario.o \
 	Manejadores/ManejadorCine.o \
 	Manejadores/ManejadorPelicula.o \
 	Manejadores/ManejadorFuncion.o \
