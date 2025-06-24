@@ -9,6 +9,8 @@ DtSala::DtSala(int idSala, int capacidad)
     this->capacidad = capacidad;
 }    
 
+DtSala::DtSala() : idSala(0), capacidad(0) {}
+
 int DtSala::getIdSala()
 {
     return idSala;

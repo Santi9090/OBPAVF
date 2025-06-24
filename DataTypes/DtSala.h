@@ -16,6 +16,7 @@ private:
     map<int, DtFuncion> funciones;
 
 public:
+    DtSala();
     DtSala(int idSala, int capacidad);
     int getCapacidad();
     int getIdSala();

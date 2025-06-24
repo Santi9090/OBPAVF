@@ -545,6 +545,7 @@ void menu2()
     cout << "14- Comentar pelicula" << endl;
     cout << "15- Ver comentario y puntaje de pelicula" << endl;
     cout << "16- Ver Informacion de pelicula" << endl;
+    cout << "17- Cargar Datos (para pruebas)" << endl;
 
     cout << "0- Cerrar Sesión" << endl;
     cout << "_____________________________________________" << endl;
@@ -643,6 +644,70 @@ void VerInformacionPelicula()
         cin >> salida;
     } while (salida != 0);
 }
+void cargarDatos()
+{
+    cout << "Cargando datos..." << endl;
+    //Usuarios
+    iconSesion->registrarUsuario("juan","1234","foto1.jpg");
+    iconSesion->registrarUsuario("ana","abcd","foto2.jpg");
+    iconSesion->registrarUsuario("mario","pass","foto3.jpg");
+    iconSesion->iniciarSesion("juan","1234");
+
+    //Peliculas
+    iconPelicula->RegistrarPelicula("Pelicula1","SinopsisPelicula1","urlFoto1");
+    iconPelicula->RegistrarPelicula("Pelicula2","SinopsisPelicula2","urlFoto2");
+    iconPelicula->RegistrarPelicula("Pelicula3","SinopsisPelicula3","urlFoto3");
+
+    //Cines y Salas
+    DtDireccion direccion1("Av.Principal",123);
+    DtDireccion direccion2("CalleSecundaria",456);
+    map<int,DtSala> salas1;
+    salas1[1]=DtSala(1,100);
+    salas1[2]=DtSala(2,80);
+    map<int,DtSala> salas2;
+    salas2[1]=DtSala(1,120);
+    iconCine->AltaCine(direccion1,salas1);
+    iconCine->AltaCine(direccion2,salas2);
+
+    //Funciones
+    DtFecha fecha1(23,6,2025);
+    DtHorario horario1("20:00","22:00");
+    DtHorario horario2("18:00","20:00");
+    iconFuncion->AltaFuncion(1,1,fecha1,horario1,"Pelicula1");
+    iconFuncion->AltaFuncion(1,2,fecha1,horario2,"Pelicula2");
+    iconFuncion->AltaFuncion(2,1,fecha1,horario1,"Pelicula3");
+
+    //Reservas
+    DtDebito debito1(1000,2,0,"BancoEjemplo");
+    DtCredito credito1(1500,3,0,0.0,"FinancieraEjemplo");
+    iconReserva->CrearReserva(1,1,1,"Pelicula1",debito1);
+    iconReserva->CrearReserva(1,2,2,"Pelicula2",credito1);
+    iconSesion->cerrarSesion();
+    iconSesion->iniciarSesion("ana","abcd");
+    DtDebito debito2(500,1,0,"BancoAna");
+    iconReserva->CrearReserva(2,1,3,"Pelicula3",debito2);
+    iconSesion->cerrarSesion();
+    iconSesion->iniciarSesion("mario","pass");
+    DtCredito credito2(2000,4,0,0.0,"FinancieraMario");
+    iconReserva->CrearReserva(1,1,1,"Pelicula1",credito2);
+    iconSesion->cerrarSesion();
+    iconSesion->iniciarSesion("juan","1234");
+
+    //Puntajes y comentarios
+    iconPuntajeComentario->agregarPuntaje(5,"Pelicula1");
+    iconPuntajeComentario->agregarComentario("Muybuenapelicula","Pelicula1");
+    iconSesion->cerrarSesion();
+    iconSesion->iniciarSesion("ana","abcd");
+    iconPuntajeComentario->agregarPuntaje(3,"Pelicula1");
+    iconPuntajeComentario->agregarComentario("Me gustó pero esperaba más","Pelicula1");
+    iconSesion->cerrarSesion();
+    iconSesion->iniciarSesion("mario","pass");
+    iconPuntajeComentario->agregarPuntaje(4,"Pelicula2");
+    iconPuntajeComentario->agregarComentario("Entretenida,super","Pelicula2");
+    iconSesion->cerrarSesion();
+    iconSesion->iniciarSesion("juan","1234");
+    cout << "Datos cargados exitosamente." << endl;
+}
 void lobby()
 {
     int opcion;
@@ -721,6 +786,10 @@ void lobby()
         case 16:
             VerInformacionPelicula();
             break;
+        case 17:
+        cargarDatos();
+            cout << "Datos cargados exitosamente." << endl;
+            break;
         case 0:
             iconSesion->cerrarSesion();
             break;
@@ -729,32 +798,6 @@ void lobby()
             break;
         }
     } while (iconSesion->existeSesion());
-}
-void cargarDatos()
-{
-    cout << "Cargando datos..." << endl;
-    iconPelicula->RegistrarPelicula("Pelicula 1", "Sinopsis de Pelicula 1", "urlFoto1");
-    iconPelicula->RegistrarPelicula("Pelicula 2", "Sinopsis de Pelicula 2", "urlFoto2");
-    iconPelicula->RegistrarPelicula("Pelicula 3", "Sinopsis de Pelicula 3", "urlFoto3");
-    DtDireccion direccion1("Av. Principal", 123);
-    DtDireccion direccion2("Calle Secundaria", 456);
-    map<int, DtSala> salas1;
-    salas1[1] = DtSala(1, 100);
-    salas1[2] = DtSala(2, 80);
-    map<int, DtSala> salas2;
-    salas2[1] = DtSala(1, 120);
-    iconCine->AltaCine(direccion1, salas1);
-    iconCine->AltaCine(direccion2, salas2);
-    DtFecha fecha1(23, 6, 2025);
-    DtHorario horario1("20:00", "22:00");
-    DtHorario horario2("18:00", "20:00");
-    iconFuncion->AltaFuncion(1, 1, fecha1, horario1, "Pelicula 1");
-    iconFuncion->AltaFuncion(1, 2, fecha1, horario2, "Pelicula 2");
-    iconFuncion->AltaFuncion(2, 1, fecha1, horario1, "Pelicula 3");
-    DtDebito debito1(1000, 2, 0, "BancoEjemplo");
-    DtCredito credito1(1500, 3, 0, 0.0, "FinancieraEjemplo");
-    iconReserva->CrearReserva(1, 1, 1, "Pelicula 1", debito1);
-    iconReserva->CrearReserva(1, 2, 2, "Pelicula 2", credito1);
 }
 int main()
 {
